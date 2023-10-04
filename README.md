@@ -49,12 +49,13 @@ To get started with Inventory Now, follow the installation instructions below.
 3. Install the python dependecies:
 
   ```shell
-  pip install -r requirements.txt
+  pipenv install -r requirements.txt
   ```
 
 4. Migrate the database:
 
   ```shell
+  pipenv shell
   flask db init
   flask db migrate
   flask db upgrade
