@@ -54,7 +54,7 @@ To get started with Inventory Now, follow the installation instructions below.
 
   ```bash
   flask db upgrade
-   ``
+  ```
 
   ```bash
   flask seed all
