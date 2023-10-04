@@ -61,38 +61,22 @@ To get started with Inventory Now, follow the installation instructions below.
   ```
 
   ```bash
-  flask run
+  flask run -p 5001
   ```
 
-4. Migrate the database:
-
-  ```bash
-  pipenv shell
-  flask db init
-  flask db migrate
-  flask db upgrade
-  ```
-
-5. cd into the react-app:
+4. cd into the react-app:
 
   ```bash
   cd react-app
   ```
 
-6. Install the react dependencies:
+5. Install the react dependencies:
 
   ```bash
   npm install
   ```
 
-7. Start the flask backend
-
-  ```bash
-  pipenv shell
-  flask run -p 5001
-  ```
-
-9. cd into the react-app and start the frontend
+6. cd into the react-app and start the frontend
 
   ```bash
   npm start
