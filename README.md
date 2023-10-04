@@ -43,7 +43,7 @@ To get started with Inventory Now, follow the installation instructions below.
 2. Navigate to the root of the file
 
   ```shell
-  cd inventory-management
+  cd inventory_now
   ```
 
 3. Install the python dependecies:
