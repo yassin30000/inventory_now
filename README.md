@@ -61,7 +61,7 @@ To get started with Inventory Now, follow the installation instructions below.
   ```
 
   ```bash
-  flask run -p 5001
+  flask run
   ```
 
 4. cd into the react-app:
