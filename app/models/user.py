@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     items = db.relationship('Item', backref='user', lazy=True)
     suppliers = db.relationship('Supplier', backref='user', lazy=True)
     categories = db.relationship('Category', backref='user', lazy=True)
+    
     # children = relationship("Child", backref="parent")  # only on the parent class
 
 
