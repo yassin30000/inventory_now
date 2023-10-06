@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+import inventorySheetReducer from './inventory_sheet.js'
 
 const rootReducer = combineReducers({
   session,
+  inventorySheets: inventorySheetReducer
 });
 
 

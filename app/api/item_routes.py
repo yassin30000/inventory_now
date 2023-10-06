@@ -39,6 +39,20 @@ def user_items():
     return {'items': [item.to_dict() for item in user_items]}
 
 
+# READ ITEM INFO FROM ITEM ID
+@item_routes.route('/<int:item_id>')
+@login_required
+def one_item(item_id):
+    item = Item.query.get(item_id)
+    if item:
+        if item.user_id == current_user.id:
+            return {'item': item.to_dict()}, 200
+        else:
+            return {'errors': 'Unauthorized to get this item'}, 401
+    else:
+        return {'errors': 'Item not found'}, 404
+
+
 # UPDATE AN ITEM BASED ON ITEM ID
 @item_routes.route('/<int:item_id>', methods=['PUT', 'PATCH'])
 @login_required
@@ -78,8 +92,8 @@ def delete_item(item_id):
         if item.user_id == current_user.id:
             db.session.delete(item)
             db.session.commit()
-            return {'message': 'Item deleted successfully'}
+            return {'message': 'Item deleted successfully'}, 200
         else:
             return {'errors': 'Unauthorized to delete this item'}, 401
     else:
-        return {'errors': 'Item not found'}, 404    
+        return {'errors': 'Item not found'}, 404
