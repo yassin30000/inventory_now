@@ -9,18 +9,23 @@ def seed_suppliers():
     suppliers_to_add = [
         {
             'name': 'Supplier 1',
+            'user_id': 1
         },
         {
             'name': 'Supplier 2',
+            'user_id': 1
         },
         {
             'name': 'Supplier 3',
+            'user_id': 1
         },
         {
             'name': 'Supplier 4',
+            'user_id': 1
         },
         {
             'name': 'Supplier 5',
+            'user_id': 1
         }
     ]
 

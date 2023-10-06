@@ -9,18 +9,23 @@ def seed_categories():
     categories_to_add = [
         {
             'name': 'Category 1',
+            'user_id': 1
         },
         {
             'name': 'Category 2',
+            'user_id': 1
         },
         {
             'name': 'Category 3',
+            'user_id': 1
         },
         {
             'name': 'Category 4',
+            'user_id': 1
         },
         {
             'name': 'Category 5',
+            'user_id': 1
         }
     ]
 

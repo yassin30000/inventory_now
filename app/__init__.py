@@ -8,6 +8,10 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.item_routes import item_routes
+from .api.category_routes import category_routes
+from .api.supplier_routes import supplier_routes
+from .api.inventory_sheet_routes import inventory_sheets_routes
+from .api.inventory_item_routes import inventory_items_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -30,6 +34,10 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(item_routes, url_prefix='/api/items')
+app.register_blueprint(category_routes, url_prefix='/api/categories')
+app.register_blueprint(supplier_routes, url_prefix='/api/suppliers')
+app.register_blueprint(inventory_sheets_routes, url_prefix='/api/inventory_sheets')
+app.register_blueprint(inventory_items_routes, url_prefix='/api/inventory_items')
 db.init_app(app)
 Migrate(app, db)
 
