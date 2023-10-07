@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserItems } from '../../store/item';
 import { fetchSingleSupplier, fetchUserSuppliers } from '../../store/supplier';
 import { fetchUserCategories } from '../../store/category';
+import CategoriesTab from '../CategoriesTab';
+import SuppliersTab from '../SuppliersTab';
+import OpenModalButton from '../OpenModalButton';
+import NewItemModal from '../NewItemModal';
 
 
 function ItemsPage() {
@@ -17,7 +21,6 @@ function ItemsPage() {
     const userCategories = useSelector((state) => state.categories.categories); // Get user categories
 
 
-    // Create a dictionary of supplier_id to supplier name
     const supplierDictionary = {};
     userSuppliers.forEach((supplier) => {
         supplierDictionary[supplier.id] = supplier.name;
@@ -28,7 +31,6 @@ function ItemsPage() {
         categoryDictionary[category.id] = category.name;
     });
 
-    // Map userItems to include supplier names
     const itemsWithSupplierAndCategoryNames = userItems.map((item) => ({
         ...item,
         supplierName: supplierDictionary[item.supplier_id] || 'Unknown Supplier',
@@ -75,6 +77,8 @@ function ItemsPage() {
                 </button>
             </div>
             <div className="tab-content">
+                {activeTab === 'categories' && <CategoriesTab />}
+                {activeTab === 'suppliers' && <SuppliersTab />}
                 {activeTab === 'items' && (
                     <div className="items-content">
                         <table className="items-table">
@@ -85,7 +89,12 @@ function ItemsPage() {
                                     <th>Supplier</th>
                                     <th>Low Stock At</th>
                                     <th>Suffix</th>
-                                    <th></th>
+                                    <th><div className="new-item-btn-container">
+                                        <OpenModalButton
+                                            modalComponent={<NewItemModal />}
+                                            buttonText='new item'
+                                        />
+                                    </div></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,16 +102,18 @@ function ItemsPage() {
                                     <tr key={item.id} className={index === itemsWithSupplierAndCategoryNames.length - 1 ? 'last-row' : ''}>
                                         <td id='item-name'>{item.name}</td>
                                         <td id='item-category'>{item.categoryName}</td>
-                                        <td>{item.supplierName}</td> {/* Display supplier name */}
+                                        <td>{item.supplierName}</td>
                                         <td>{item.low_stock_at}</td>
                                         <td>{item.suffix}</td>
                                         <td id='item-dots'><span class="material-symbols-outlined">
                                             more_horiz
                                         </span></td>
                                     </tr>
-                                ))}
+                                )).reverse()}
                             </tbody>
                         </table>
+
+
                     </div>
                 )}
             </div>

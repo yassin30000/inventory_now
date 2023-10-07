@@ -50,7 +50,7 @@ function LoginFormPage() {
 		};
 	}, []);
 
-	if (sessionUser) return <Redirect to="/" />;
+	if (sessionUser) return <Redirect to="/dashboard" />;
 
 
 	return (

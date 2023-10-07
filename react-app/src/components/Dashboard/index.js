@@ -1,42 +1,17 @@
+import { useSelector } from 'react-redux';
 import './Dashboard.css'
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+
+
 
 function Dashboard() {
+
+    const sessionUser = useSelector((state) => state.session.user);
+
+    if (!sessionUser) return <Redirect to="/login" />;
+
     return (
         <>
-            {/* <div className="dashboard-container">
-
-                <div className="inventory-sheets-preview-container">
-                    <div className="inventory-sheets-preview">
-
-                    </div>
-
-                </div>
-
-                <div className="total-items-container">
-                    <div className="total-items">
-                        327
-                    </div>
-                </div>
-
-                <div className="grocery-list-container">
-                    <div className="grocery-list">
-                        <p>hemp seeds</p>
-                        <p>hemp seeds</p>
-                        <p>hemp seeds</p>
-                        <p>hemp seeds</p>
-                    </div>
-                </div>
-
-                <div className="low-stock-container">
-                    <div className="low-stock">
-                        <p>hemp seeds</p>
-                        <p>granola</p>
-                        <p>your mom</p>
-                        <p>hemp seeds</p>
-                    </div>
-                </div>
-            </div> */}
-
             <div className="dashboard-container">
                 <div className="inventory-sheets-preview-container">
                     <div className="i-s-top-container">
