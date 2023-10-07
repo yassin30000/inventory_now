@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import InventorySheetForm from "./components/InventorySheetForm";
 import Dashboard from "./components/Dashboard";
 import ItemsPage from "./components/ItemsPage";
+import InventoryPage from "./components/InventoryPage";
 
 
 function App() {
@@ -31,9 +32,11 @@ function App() {
 					<Route path="/signup">
 						<SignupFormPage />
 					</Route>
-					<Route path="/inventory-sheet">
-						<InventorySheetForm />
+					
+					<Route path="/inventory-sheets">
+						<InventoryPage />
 					</Route>
+
 					<Route path="/items">
 						<ItemsPage />
 					</Route>

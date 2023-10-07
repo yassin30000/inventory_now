@@ -2,19 +2,43 @@ import './LeftNavigation.css'
 import logo from '../../images/inventory_now_logo_white.png'
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import InventorySheetForm from '../InventorySheetForm';
+import OpenModalButton from '../OpenModalButton';
+import curveLogo from '../../images/actual_curve.png'
+import purpleLogo from '../../images/i-n-logo-purple.png'
+import NewInventorySheet from '../NewInventorySheet';
+import { createInventorySheet, fetchInventorySheet } from '../../store/inventory_sheet';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 
 function LeftNavigation() {
     const location = useLocation();
+    const dispatch = useDispatch();
+    const [newSheetId, setNewSheetId] = useState();
+
+    useEffect(() => {
+        dispatch(fetchInventorySheet(newSheetId))
+    }, [dispatch, newSheetId])
+
     if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/404") return null
 
+    const handleNewSheet = async () => {
+        const newSheet = await dispatch(createInventorySheet());
+        setNewSheetId(newSheet.inventory_sheet_id);
+        // console.log('NEW SHEET', newSheetId)
+    }
 
     return (
         <>
             <div className="left-nav-container">
 
                 <NavLink exact to='/dashboard' className="left-nav-logo">
-                    <img src={logo} alt="" />
+                    <div className="logo-container">
+                        <img src={logo} alt="" className="logo-img" />
+                        {/* <img src={purpleLogo} alt="" /> */}
+
+                    </div>
                 </NavLink>
 
                 <div className="left-nav-links">
@@ -39,10 +63,18 @@ function LeftNavigation() {
                         Inventory
                     </NavLink>
 
-                    <NavLink to='/inventory-sheets/new'>
+                    {/* <button onClick={handleNewSheet}>
                         <span class="material-symbols-outlined">add</span>
                         new
-                    </NavLink>
+                    </button> */}
+
+                    <OpenModalButton
+                        buttonText='new'
+                        onButtonClick={handleNewSheet}
+                        modalComponent={<InventorySheetForm sheetId={newSheetId} />}
+                        buttonHTML={<span class="material-symbols-outlined">add</span>}
+                    />
+
                 </div>
             </div>
         </>

@@ -33,7 +33,7 @@ function Dashboard() {
             <div className="dashboard-container">
                 <div className="inventory-sheets-preview-container">
                     <div className="i-s-top-container">
-                        <div id='i-s-top-label'>recent <br />inventory sheets</div>
+                        <div id='i-s-top-label'>welcome <br />to your dashboard.</div>
 
                     </div>
                     <div className="i-s-bottom-container">

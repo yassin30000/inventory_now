@@ -32,8 +32,8 @@
 }
 
 #i-s-top-label {
-	font-size: 35px;
-	/* font-weight: 500; */
+	font-size: 40px;
+	font-weight: 500;
 }
 
 .inventory-sheet-1 {
@@ -41,7 +41,8 @@
 	height: 100%;
 	width: 250px;
 	border-radius: 25px;
-	background-color: #744eb4;
+	/* background-color: #744eb4; */
+	background-color: #BB86FC;
 	color: white;
 	padding: 30px;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -120,7 +121,10 @@
 	grid-template-columns: 50% 50%;
 	align-items: center;
 	justify-content: center;
-	background-color: #12f9a6;
+
+	/* background-color: #12f9a6; */
+
+	background-color: #BB86FC;
 }
 
 #total-items {
@@ -137,7 +141,8 @@
 	flex-direction: column;
 	text-align: center;
 	justify-content: center;
-	color: #0f0f0f;
+	/* color: #0f0f0f; */
+	color: white;
 	border-radius: 20px;
 }
 
@@ -164,12 +169,14 @@
 }
 
 .new-item-dash-btn button {
-	background-color: rgb(15, 15, 15);
+	/* background-color: rgb(15, 15, 15); */
+	background-color: white;
 	height: 80px;
 	width: 80px;
 	border: none;
 	border-radius: 50%;
-	color: #12f9a6;
+	/* color: #12f9a6; */
+	color: #BB86FC;
 	transition: all 0.3s;
 }
 
@@ -180,7 +187,9 @@
 
 .new-item-dash-btn button:hover {
 	cursor: pointer;
-	background-color: #744eb4;
+	background-color: #EE4077;
+	background-color: black;
+	/* background-color: #744eb4; */
 	color: white;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

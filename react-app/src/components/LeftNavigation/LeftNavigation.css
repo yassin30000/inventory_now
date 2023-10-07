@@ -24,8 +24,14 @@
 	cursor: pointer;
 }
 
+.left-nav-links > button,
 .left-nav-links > a,
 .left-nav-links > span {
+
+
+	background-color: #0F0F0F;
+	border: none;
+
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -39,9 +45,11 @@
 	text-decoration: none;
 }
 
+.left-nav-links > button:hover,
 .left-nav-links > a:hover,
 .left-nav-links > span:hover {
-	background-color: #744eb4;
+	/* background-color: #744eb4; */
+	background-color: #BB86FC;
 	cursor: pointer;
 }
 
@@ -53,4 +61,14 @@
 	align-items: flex-start;
 	flex-direction: column;
 	/* gap: 25px; */
+}
+
+.left-nav-logo .logo-img {
+	transition: all 0.5s;
+	transition: transform 0.5s ease;
+}
+
+
+.left-nav-logo:hover .logo-img {
+	transform: scale(1.1); 
 }

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import LeftNavigation from '../LeftNavigation';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { logout } from '../../store/session';
 
 
@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const dropdownRef = useRef(null);
-
+	const history = useHistory();
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -40,10 +40,9 @@ function Navigation({ isLoaded }) {
 	};
 
 	const handleLogout = () => {
-		// Dispatch the logout action here
 		dispatch(logout());
-		// Close the dropdown
 		setIsDropdownOpen(false);
+		history.push('/login')
 	};
 
 	const formatDate = () => {
@@ -82,7 +81,7 @@ function Navigation({ isLoaded }) {
 					{/* <ProfileButton user={sessionUser} /> */}
 
 					<div className="profile-button" onClick={toggleDropdown}>
-						<span className="material-symbols-outlined nav-profile">person</span>
+						<span className="material-symbols-outlined nav-profile" id={isDropdownOpen ? 'dropDownOpen' : ''}>person</span>
 						{isDropdownOpen && (
 							<div className="profile-dropdown" ref={dropdownRef}>
 

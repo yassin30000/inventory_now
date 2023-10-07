@@ -9,6 +9,7 @@ import loginLogoPurple from '../../images/i-n-logo-purple.png'
 import backgroundImg from '../../images/neon background.png'
 import whitePurple from '../../images/i-n-white-purple.png'
 import loginLogoWhite from '../../images/inventory_now_logo_white.png'
+import curveLogo from '../../images/actual_curve.png'
 
 
 import { NavLink } from "react-router-dom";
@@ -134,7 +135,7 @@ function LoginFormPage() {
 					</div>
 					<div className="login-right-container">
 
-						<img src={loginLogoWhite} alt="" />
+						<img src={curveLogo} alt="" className="rotating-logo" />
 					</div>
 
 				</div>
