@@ -138,6 +138,7 @@
 .login-form-subheading {
 	font-size: 18px;
 	font-weight: 300;
+
 }
 
 .login-right-container {
@@ -176,6 +177,7 @@
 }
 
 .create-account-link-container a {
-	color: black;
+	color: #734eb4;
 	font-weight: 500;
+	
 }
