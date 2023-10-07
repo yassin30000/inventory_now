@@ -1,16 +1,51 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import LeftNavigation from '../LeftNavigation';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { logout } from '../../store/session';
+
 
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 	const location = useLocation();
+	const dispatch = useDispatch();
+	const dropdownRef = useRef(null);
+
+
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+	useEffect(() => {
+		const closeDropdownOnClickOutside = (e) => {
+			if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+				setIsDropdownOpen(false);
+			}
+		};
+
+		if (isDropdownOpen) document.addEventListener('click', closeDropdownOnClickOutside);
+
+		return () => {
+			document.removeEventListener('click', closeDropdownOnClickOutside);
+		};
+
+	}, [isDropdownOpen]);
+
 	if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/404") return null
+
+	const toggleDropdown = () => {
+		setIsDropdownOpen((prevState) => !prevState);
+	};
+
+	const handleLogout = () => {
+		// Dispatch the logout action here
+		dispatch(logout());
+		// Close the dropdown
+		setIsDropdownOpen(false);
+	};
+
 	const formatDate = () => {
 		const options = {
 			weekday: 'long',
@@ -44,25 +79,31 @@ function Navigation({ isLoaded }) {
 							</div>
 						</>
 					)}
-					<ProfileButton user={sessionUser} />
+					{/* <ProfileButton user={sessionUser} /> */}
+
+					<div className="profile-button" onClick={toggleDropdown}>
+						<span className="material-symbols-outlined nav-profile">person</span>
+						{isDropdownOpen && (
+							<div className="profile-dropdown" ref={dropdownRef}>
+
+								{sessionUser && (<p className='user-name'>{sessionUser.username}</p>)} {/* if logged in, show username */}
+
+
+								<button onClick={handleLogout}>
+									<span class="material-symbols-outlined">logout</span>
+									Logout
+								</button>
+								{/* You can add more dropdown options here */}
+							</div>
+						)}
+					</div>
 				</div>
 
 
 			</div>
 
 			<LeftNavigation />
-
 		</>
-		// <ul>
-		// 	<li>
-		// 		<NavLink exact to="/">Home</NavLink>
-		// 	</li>
-		// 	{isLoaded && (
-		// 		<li>
-		// 			<ProfileButton user={sessionUser} />
-		// 		</li>
-		// 	)}
-		// </ul>
 
 	)
 }
