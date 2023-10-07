@@ -163,10 +163,25 @@
 	transition: all 0.3s;
 }
 
-.new-item-dash-btn:hover {
+.new-item-dash-btn button {
+	background-color: rgb(15, 15, 15);
+	height: 80px;
+	width: 80px;
+	border: none;
+	border-radius: 50%;
+	color: #12f9a6;
+	transition: all 0.3s;
+}
+
+.new-item-dash-btn button span {
+	border-radius: 50%;
+}
+
+
+.new-item-dash-btn button:hover {
 	cursor: pointer;
 	background-color: #744eb4;
-
+	color: white;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -181,6 +196,7 @@
 
 .material-symbols-outlined.new-item-dash {
 	font-size: 50px;
+
 }
 
 .column.grocery-list,

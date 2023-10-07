@@ -1,14 +1,32 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import './Dashboard.css'
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import OpenModalButton from '../OpenModalButton';
+import NewItemModal from '../NewItemModal'
+import { fetchUserItems } from '../../store/item';
+import { useEffect } from 'react';
+import { fetchUserCategories } from '../../store/category';
+import { fetchUserSuppliers } from '../../store/supplier';
 
 
 
 function Dashboard() {
 
     const sessionUser = useSelector((state) => state.session.user);
+    const userItems = useSelector(state => state.items.userItems);
+
+
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(fetchUserItems());
+        dispatch(fetchUserCategories());
+        dispatch(fetchUserSuppliers());
+        
+    }, [dispatch]);
 
     if (!sessionUser) return <Redirect to="/login" />;
+
 
     return (
         <>
@@ -40,15 +58,17 @@ function Dashboard() {
                     <div className="column total-items">
 
                         <div id="total-items">
-                            <div id="total-items-number">249</div>
+                            <div id="total-items-number">{userItems.length}</div>
                             <div id="total-items-label">items</div>
                         </div>
 
                         <div className="new-item-dash-btn-container">
                             <div className="new-item-dash-btn">
-                                <span class="material-symbols-outlined new-item-dash">
-                                    add
-                                </span>
+                                <OpenModalButton
+                                    buttonHTML={<span class="material-symbols-outlined new-item-dash">add</span>}
+                                    modalComponent={<NewItemModal />}
+                                />
+
                             </div>
                         </div>
 
