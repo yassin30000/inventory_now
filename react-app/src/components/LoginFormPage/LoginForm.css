@@ -138,7 +138,6 @@
 .login-form-subheading {
 	font-size: 18px;
 	font-weight: 300;
-
 }
 
 .login-right-container {
@@ -179,5 +178,18 @@
 .create-account-link-container a {
 	color: #734eb4;
 	font-weight: 500;
-	
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.rotating-logo {
+	animation: rotate 40s linear infinite;
+	border-radius: 50%;
 }

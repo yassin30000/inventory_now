@@ -95,10 +95,24 @@
 
 .material-symbols-outlined.nav-profile {
 	font-size: 40px;
+	-webkit-border-radius: 50px;
+	/* Safari, Chrome */
+	-moz-border-radius: 50px;
+	/* Firefox */
+	border-radius: 50px;
+	/* CSS3 */
+
+	transition: all 0.5s ease;
+	padding: 5px;
+}
+
+#dropDownOpen {
+	box-shadow: 0 0 0 1px #ffffff;
 }
 
 .material-symbols-outlined.nav-profile:hover {
 	cursor: pointer;
+	box-shadow: 0 0 0 1px #ffffff;
 }
 
 .profile-dropdown {
