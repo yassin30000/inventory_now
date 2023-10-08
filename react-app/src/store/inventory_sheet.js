@@ -126,12 +126,18 @@ const inventorySheetReducer = (state = initialState, action) => {
             return { ...state, inventorySheets: action.payload }
 
         case CREATE_INVENTORY_SHEET:
-            // Add the newly created inventory sheet to the array of sheets.
             return { ...state, inventorySheets: [state.inventorySheets, action.payload] }
 
+        case DELETE_INVENTORY_SHEET:
+            // Filter out the deleted inventory sheet by sheetId.
+            const updatedSheets = state.inventorySheets.inventory_sheets.filter(
+                (sheet) => sheet.id !== action.payload
+            );
+            return {
+                ...state,
+                inventorySheets: updatedSheets,
+            };
 
-        // case DELETE_INVENTORY_SHEET:
-        //     return { ...state, inventorySheets: action.payload}
 
         default:
             return state

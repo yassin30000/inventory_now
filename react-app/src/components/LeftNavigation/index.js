@@ -7,27 +7,33 @@ import OpenModalButton from '../OpenModalButton';
 import curveLogo from '../../images/actual_curve.png'
 import purpleLogo from '../../images/i-n-logo-purple.png'
 import NewInventorySheet from '../NewInventorySheet';
-import { createInventorySheet, fetchInventorySheet } from '../../store/inventory_sheet';
+import { createInventorySheet, fetchAllInventorySheets, fetchInventorySheet } from '../../store/inventory_sheet';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function LeftNavigation() {
     const location = useLocation();
     const dispatch = useDispatch();
     const [newSheetId, setNewSheetId] = useState();
-
-    useEffect(() => {
-        dispatch(fetchInventorySheet(newSheetId))
-    }, [dispatch, newSheetId])
-
-    if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/404") return null
+    const history = useHistory()
 
     const handleNewSheet = async () => {
         const newSheet = await dispatch(createInventorySheet());
         setNewSheetId(newSheet.inventory_sheet_id);
-        // console.log('NEW SHEET', newSheetId)
+        console.log('NEW SHEET ID', newSheetId)
+        await dispatch(fetchInventorySheet(newSheetId))
+
     }
+
+
+    useEffect(() => {
+        dispatch(fetchInventorySheet(newSheetId))
+        dispatch(fetchAllInventorySheets())
+    }, [dispatch, newSheetId])
+
+    if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/404") return null
 
     return (
         <>

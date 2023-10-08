@@ -11,9 +11,8 @@ function InventoryPage() {
     const dispatch = useDispatch();
 
     const allSheetsData = useSelector(state => state.inventorySheets.inventorySheets);
-    const allSheets = allSheetsData ? allSheetsData.inventory_sheets : [];
 
-    console.log(allSheets)
+    const allSheets = allSheetsData ? allSheetsData.inventory_sheets : [];
 
     const formatDate = (dateString) => {
         const options = {
@@ -48,14 +47,6 @@ function InventoryPage() {
             }
         });
         return latestUpdatedAt;
-    };
-
-    const handleEditSheet = (sheetId) => {
-        console.log(`Edit sheet with ID: ${sheetId}`);
-    };
-
-    const handleDeleteSheet = (sheetId) => {
-        console.log(`Delete sheet with ID: ${sheetId}`);
     };
 
     useEffect(() => {
@@ -106,7 +97,6 @@ function InventoryPage() {
                                             modalComponent={< ConfirmDeleteSheet sheetId={sheet.id} />}
                                             buttonText='delete'
                                         />
-
 
                                     </div>
                                 </div>
