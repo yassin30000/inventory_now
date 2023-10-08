@@ -8,6 +8,7 @@ import CategoriesTab from '../CategoriesTab';
 import SuppliersTab from '../SuppliersTab';
 import OpenModalButton from '../OpenModalButton';
 import NewItemModal from '../NewItemModal';
+import ConfirmDeleteItem from '../ConfirmDeleteItem';
 
 
 function ItemsPage() {
@@ -39,6 +40,15 @@ function ItemsPage() {
 
     console.log('CATEGORIES: ', itemsWithSupplierAndCategoryNames)
 
+    const [showDropdown, setShowDropdown] = useState(null);
+
+    const handleEditDropDown = (index) => {
+        if (showDropdown === index) {
+            setShowDropdown(null);
+        } else {
+            setShowDropdown(index);
+        }
+    };
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -105,9 +115,19 @@ function ItemsPage() {
                                         <td>{item.supplierName}</td>
                                         <td>{item.low_stock_at}</td>
                                         <td>{item.suffix}</td>
-                                        <td id='item-dots'><span class="material-symbols-outlined">
-                                            more_horiz
-                                        </span></td>
+                                        <td id='item-dots'><span class="material-symbols-outlined" onClick={() => handleEditDropDown(index)}>more_horiz</span>
+                                            {showDropdown === index && (
+                                                <div className="item-edit-dropdown">
+                                                    
+                                                    <button className="edit-item-option">edit</button>
+                                                    <OpenModalButton
+                                                        modalComponent={<ConfirmDeleteItem />}
+                                                        buttonText='delete'
+                                                    />
+
+                                                </div>
+                                            )}
+                                        </td>
                                     </tr>
                                 )).reverse()}
                             </tbody>

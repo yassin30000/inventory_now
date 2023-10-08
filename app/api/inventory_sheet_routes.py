@@ -72,6 +72,10 @@ def delete_inventory_sheet(inventory_sheet_id):
     sheet = InventorySheet.query.get(inventory_sheet_id)
     if sheet:
         if sheet.user_id == current_user.id:
+
+            for item in sheet.inventory_items:
+                db.session.delete(item)
+                
             db.session.delete(sheet)
             db.session.commit()
             return {'message': 'Inventory Sheet deleted successfully'}, 200

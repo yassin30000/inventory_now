@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchAllInventorySheets, fetchInventorySheet, updateInventoryItem } from "../../store/inventory_sheet";
+import { deleteInventorySheet, fetchAllInventorySheets, fetchInventorySheet, updateInventoryItem } from "../../store/inventory_sheet";
 import { useDispatch, useSelector } from "react-redux";
 import './InventorySheetForm.css'
 import { useModal } from "../../context/Modal";
@@ -14,10 +14,11 @@ function InventorySheetForm({ sheetId }) {
 
     useEffect(() => {
         dispatch(fetchInventorySheet(sheetId));
+        dispatch(fetchAllInventorySheets());
+
     }, [dispatch, sheetId]);
 
     const [quantityUpdates, setQuantityUpdates] = useState({});
-
     const handleQuantityChange = (itemId, newQuantity) => {
         setQuantityUpdates({ ...quantityUpdates, [itemId]: newQuantity });
     };
@@ -32,10 +33,10 @@ function InventorySheetForm({ sheetId }) {
         return date.toLocaleDateString(undefined, options);
     }
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Dispatch actions to update inventory item quantities
         if (inventorySheet) {
             for (const itemId in quantityUpdates) {
                 const newQuantity = quantityUpdates[itemId];
@@ -45,8 +46,6 @@ function InventorySheetForm({ sheetId }) {
         closeModal();
         dispatch(fetchAllInventorySheets());
         history.push('/inventory-sheets')
-        // Clear the local state
-        // setQuantityUpdates({});
     };
 
     return (
@@ -71,6 +70,7 @@ function InventorySheetForm({ sheetId }) {
                             </div>
                         ))}
                         <button type="submit">Save</button>
+                        {/* <button onClick={() => handleDelete()}>Delete</button> */}
                     </form>
 
                 </div>

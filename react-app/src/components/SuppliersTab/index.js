@@ -5,6 +5,8 @@ import { fetchSingleSupplier, fetchUserSuppliers } from '../../store/supplier';
 import { fetchUserCategories } from '../../store/category';
 import NewSupplierModal from '../NewSupplierModal';
 import OpenModalButton from '../OpenModalButton';
+import ConfirmDeleteSupplier from '../ConfirmDeleteSupplier';
+
 
 function SuppliersTab() {
     const [activeTab, setActiveTab] = useState('items');
@@ -12,9 +14,18 @@ function SuppliersTab() {
     const sessionUser = useSelector((state) => state.session.user);
     const userCategories = useSelector((state) => state.categories.categories);
     const userSuppliers = useSelector((state) => state.suppliers.suppliers);
+    const [showDropdown, setShowDropdown] = useState(null);
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
+    };
+
+    const handleEditDropDown = (index) => {
+        if (showDropdown === index) {
+            setShowDropdown(null);
+        } else {
+            setShowDropdown(index);
+        }
     };
 
     useEffect(() => {
@@ -53,9 +64,19 @@ function SuppliersTab() {
                             <td></td> {/* Display supplier name */}
                             <td></td>
                             <td></td>
-                            <td id='item-dots'><span class="material-symbols-outlined">
-                                more_horiz
-                            </span></td>
+                            <td id='item-dots'><span class="material-symbols-outlined" onClick={() => handleEditDropDown(index)}>more_horiz</span>
+                                {showDropdown === index && (
+                                    <div className="item-edit-dropdown">
+
+                                        <button className="edit-supplier-option">edit</button>
+                                        <OpenModalButton
+                                            modalComponent={<ConfirmDeleteSupplier />}
+                                            buttonText='delete'
+                                        />
+
+                                    </div>
+                                )}
+                            </td>
                         </tr>
                     )).reverse()}
                 </tbody>

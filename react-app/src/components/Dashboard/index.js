@@ -1,6 +1,6 @@
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import './Dashboard.css'
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { Redirect, useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import OpenModalButton from '../OpenModalButton';
 import NewItemModal from '../NewItemModal'
 import { fetchUserItems } from '../../store/item';
@@ -8,25 +8,22 @@ import { useEffect } from 'react';
 import { fetchUserCategories } from '../../store/category';
 import { fetchUserSuppliers } from '../../store/supplier';
 
-
-
 function Dashboard() {
-
     const sessionUser = useSelector((state) => state.session.user);
     const userItems = useSelector(state => state.items.userItems);
-
-
+    const location = useLocation();
+    const history = useHistory();
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         dispatch(fetchUserItems());
         dispatch(fetchUserCategories());
         dispatch(fetchUserSuppliers());
-        
+
     }, [dispatch]);
 
+    if (location.pathname === '/') history.push('/dashboard')
     if (!sessionUser) return <Redirect to="/login" />;
-
 
     return (
         <>

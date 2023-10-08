@@ -5,6 +5,7 @@ import { fetchSingleSupplier, fetchUserSuppliers } from '../../store/supplier';
 import { fetchUserCategories } from '../../store/category';
 import NewCategoryModal from '../NewCategoryModal';
 import OpenModalButton from '../OpenModalButton';
+import ConfirmDeleteCategory from '../ConfirmDeleteCategory';
 
 
 function CategoriesTab() {
@@ -12,9 +13,15 @@ function CategoriesTab() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const userCategories = useSelector((state) => state.categories.categories.reverse());
+    const [showDropdown, setShowDropdown] = useState(null);
 
-    console.log('CATEGORIES: ', userCategories)
-
+    const handleEditDropDown = (index) => {
+        if (showDropdown === index) {
+            setShowDropdown(null);
+        } else {
+            setShowDropdown(index);
+        }
+    };
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -57,9 +64,19 @@ function CategoriesTab() {
                             <td></td> {/* Display supplier name */}
                             <td></td>
                             <td></td>
-                            <td id='item-dots'><span class="material-symbols-outlined">
-                                more_horiz
-                            </span></td>
+                            <td id='item-dots'><span class="material-symbols-outlined" onClick={() => handleEditDropDown(index)}>more_horiz</span>
+                                {showDropdown === index && (
+                                    <div className="item-edit-dropdown">
+
+                                        <button className="edit-supplier-option">edit</button>
+                                        <OpenModalButton
+                                            modalComponent={<ConfirmDeleteCategory />}
+                                            buttonText='delete'
+                                        />
+
+                                    </div>
+                                )}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
