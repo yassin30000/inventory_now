@@ -82,21 +82,27 @@ function InventoryPage() {
                                         </div>
                                     </div>
                                     <div className="inventory-buttons">
-                                        {/* <button
-                                            className="edit-button"
-                                            onClick={() => handleEditSheet(sheet.id)}
-                                        >
-                                            Edit
-                                        </button> */}
-
                                         <OpenModalButton
-                                            modalComponent={< InventorySheetForm sheetId={sheet.id} />}
-                                            buttonText='edit'
-                                        />
-                                        <OpenModalButton
+                                            className='deleteIsButton'
+                                            buttonHTML={<span class="material-symbols-outlined">
+                                                close
+                                            </span>}
                                             modalComponent={< ConfirmDeleteSheet sheetId={sheet.id} />}
-                                            buttonText='delete'
+                                            buttonText=''
                                         />
+                                        <OpenModalButton
+                                            className='editIsButton'
+                                            buttonHTML={<span class="material-symbols-outlined">
+                                                edit
+                                            </span>}
+                                            modalComponent={< InventorySheetForm sheetId={sheet.id} />}
+                                            buttonText=''
+                                        />
+
+                                        <button id='goToIsButton'>
+                                            <span class="material-symbols-outlined">arrow_forward</span>
+                                        </button>
+
 
                                     </div>
                                 </div>

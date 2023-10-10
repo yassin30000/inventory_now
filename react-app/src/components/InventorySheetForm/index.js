@@ -44,7 +44,7 @@ function InventorySheetForm({ sheetId }) {
             }
         }
         closeModal();
-        dispatch(fetchAllInventorySheets());
+        await dispatch(fetchAllInventorySheets());
         history.push('/inventory-sheets')
     };
 

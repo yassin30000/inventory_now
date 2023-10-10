@@ -36,19 +36,74 @@
 	font-weight: 500;
 }
 
-.inventory-sheet-1 {
+.inventory-btns-container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-end;
+	gap: 10px;
+}
+
+.inventory-btns-container button {
+	transition: all 0.3s ease;
+}
+
+.inventory-btns-container button:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.edit-inventory-dashboard-btn,
+.goto-inventory-dashboard-btn {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: none;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.inventory-sheet-3 button {
+	background-color: black;
+	color: white;
+}
+
+.inventory-sheet-0 button {
+	background-color: white;
+	color: #bb86fc;
+}
+
+.inventory-sheet-2 button {
+	background-color: white;
+	color: #232323;
+}
+
+.edit-inventory-dashboard-btn {
+}
+
+.goto-inventory-dashboard-btn {
+}
+
+.inventory-sheet-3,
+.inventory-sheet-0,
+.inventory-sheet-1,
+.inventory-sheet-2 {
+	display: flex;
+	flex-direction: column;
+}
+.inventory-sheet-0 {
 	font-size: 20px;
 	height: 100%;
 	width: 250px;
 	border-radius: 25px;
 	/* background-color: #744eb4; */
-	background-color: #BB86FC;
+	background-color: #bb86fc;
 	color: white;
 	padding: 30px;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	transition: all 0.5s;
 }
-.inventory-sheet-2 {
+.inventory-sheet-1 {
 	font-size: 20px;
 
 	height: 100%;
@@ -73,25 +128,43 @@
 	transition: all 0.5s;
 }
 
+.inventory-sheet-2 {
+	font-size: 20px;
+
+	height: 100%;
+	border-radius: 25px;
+	padding: 30px;
+	width: 250px;
+	color: white;
+	background-color: #232323;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	transition: all 0.5s;
+}
+
 /* .inventory-sheet-1:hover,
 .inventory-sheet-2:hover, */
+.inventory-sheet-0:hover {
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 .inventory-sheet-1:hover {
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
 		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-	cursor: pointer;
+
 }
 .inventory-sheet-2:hover {
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
 		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-	cursor: pointer;
+
 }
 .inventory-sheet-3:hover {
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
 		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-	cursor: pointer;
+
 }
 
 .dashboard-container {
@@ -124,7 +197,7 @@
 
 	/* background-color: #12f9a6; */
 
-	background-color: #BB86FC;
+	background-color: #bb86fc;
 }
 
 #total-items {
@@ -176,7 +249,7 @@
 	border: none;
 	border-radius: 50%;
 	/* color: #12f9a6; */
-	color: #BB86FC;
+	color: #bb86fc;
 	transition: all 0.3s;
 }
 
@@ -184,10 +257,9 @@
 	border-radius: 50%;
 }
 
-
 .new-item-dash-btn button:hover {
 	cursor: pointer;
-	background-color: #EE4077;
+	background-color: #ee4077;
 	background-color: black;
 	/* background-color: #744eb4; */
 	color: white;
@@ -205,7 +277,6 @@
 
 .material-symbols-outlined.new-item-dash {
 	font-size: 50px;
-
 }
 
 .column.grocery-list,

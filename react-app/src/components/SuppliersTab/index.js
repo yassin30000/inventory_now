@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserItems } from '../../store/item';
 import { fetchSingleSupplier, fetchUserSuppliers } from '../../store/supplier';
@@ -6,19 +6,17 @@ import { fetchUserCategories } from '../../store/category';
 import NewSupplierModal from '../NewSupplierModal';
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteSupplier from '../ConfirmDeleteSupplier';
+import UpdateSupplierForm from '../UpdateSupplierForm';
 
 
 function SuppliersTab() {
-    const [activeTab, setActiveTab] = useState('items');
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const userCategories = useSelector((state) => state.categories.categories);
     const userSuppliers = useSelector((state) => state.suppliers.suppliers);
     const [showDropdown, setShowDropdown] = useState(null);
+    const dropdownRef = useRef(null);
 
-    const handleTabChange = (tab) => {
-        setActiveTab(tab);
-    };
+
 
     const handleEditDropDown = (index) => {
         if (showDropdown === index) {
@@ -27,6 +25,20 @@ function SuppliersTab() {
             setShowDropdown(index);
         }
     };
+
+    useEffect(() => {
+        const handleDocumentClick = (e) => {
+            if (showDropdown !== null && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setShowDropdown(null);
+            }
+        };
+
+        document.addEventListener('click', handleDocumentClick);
+
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+    }, [showDropdown]);
 
     useEffect(() => {
         if (sessionUser) {
@@ -48,10 +60,12 @@ function SuppliersTab() {
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th><div className="new-item-btn-container">
+                        <th id='last-heading'><div className="new-item-btn-container">
                             <OpenModalButton
                                 modalComponent={<NewSupplierModal />}
-                                buttonText='new supplier'
+                                buttonText=''
+                                buttonHTML={<span class="material-symbols-outlined">add</span>}
+
                             />
                         </div></th>
                     </tr>
@@ -61,19 +75,35 @@ function SuppliersTab() {
                         <tr key={supplier.id} className={index === userSuppliers.length - 1 ? 'last-row' : ''}>
                             <td id='item-name'>{supplier.name}</td>
                             <td id='item-category'>{supplier.items.length}</td>
-                            <td></td> {/* Display supplier name */}
                             <td></td>
                             <td></td>
-                            <td id='item-dots'><span class="material-symbols-outlined" onClick={() => handleEditDropDown(index)}>more_horiz</span>
+                            <td></td>
+                            <td id='item-dots'>
+                                <span class="material-symbols-outlined"
+                                    id={showDropdown === index ? 'edit-dd-active' : ''}
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Stop event propagation
+                                        handleEditDropDown(index);
+                                    }}>
+                                    more_horiz</span>
                                 {showDropdown === index && (
-                                    <div className="item-edit-dropdown">
+                                    <div className="item-edit-dropdown-container" ref={dropdownRef}>
 
-                                        <button className="edit-supplier-option">edit</button>
-                                        <OpenModalButton
-                                            modalComponent={<ConfirmDeleteSupplier />}
-                                            buttonText='delete'
-                                        />
+                                        <div className="item-edit-dropdown">
 
+                                            <OpenModalButton
+                                                className='edit-item-option'
+                                                buttonHTML={<span class="material-symbols-outlined">EDIT</span>}
+                                                modalComponent={<UpdateSupplierForm supplierId={supplier.id} supplierName={supplier.name} />}
+                                                buttonText='EDIT'
+                                            />
+                                            <OpenModalButton
+                                                className='delete-item-option'
+                                                buttonHTML={<span class="material-symbols-outlined">delete</span>}
+                                                modalComponent={<ConfirmDeleteSupplier supplierId={supplier.id} supplierName={supplier.name} />}
+                                                buttonText='DELETE'
+                                            />
+                                        </div>
                                     </div>
                                 )}
                             </td>

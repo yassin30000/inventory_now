@@ -37,7 +37,7 @@ body {
 }
 
 #inventoryRow2 {
-	color: #5C5B5B;
+	color: #5c5b5b;
 }
 
 #inventoryRow3 {
@@ -110,9 +110,11 @@ body {
 
 .inventory-right {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	height: 100%;
+
+	/* background-color: blue; */
 }
 
 .inventory-low-stock-container {
@@ -129,7 +131,7 @@ body {
 	/* width: 100%; */
 	width: 200px;
 	height: 200px;
-
+	margin-left: 20%;
 	padding: 30px;
 	/* min-height: 40px; */
 	display: flex;
@@ -143,4 +145,56 @@ body {
 	font-weight: 300;
 	font-size: 18px;
 	text-align: left;
+}
+
+.inventory-buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: space-between;
+	height: 100%;
+	width: 25%;
+}
+
+.deleteIsButton {
+	/* border: 1px solid #F44336; */
+	border: 1px solid #ff0000;
+	color: #ff0000;
+	background-color: #1e1e1e;
+	/* color: #F44336; */
+	border-radius: 10px;
+	width: 50px;
+	height: 50px;
+	transition: 0.3s;
+
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#goToIsButton,
+.editIsButton {
+	background-color: #1e1e1e;
+	color: #c38fff;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 1px solid #c38fff;
+	transition: 0.3s;
+}
+
+
+
+.deleteIsButton:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	background-color: #ff0000;
+	color: white;
+}
+
+#goToIsButton:hover,
+.editIsButton:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	background-color: #c38fff;
+	color: white;
 }

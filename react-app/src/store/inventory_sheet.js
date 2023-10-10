@@ -34,6 +34,7 @@ export const deleteInventorySheet = (sheetId) => async (dispatch) => {
 
     if (response.ok) {
         dispatch(deleteInventorySheetAction(sheetId));
+        return null;
     } else {
 
         const data = await response.json();
