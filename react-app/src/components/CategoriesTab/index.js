@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserItems } from '../../store/item';
 import { fetchSingleSupplier, fetchUserSuppliers } from '../../store/supplier';
@@ -6,16 +6,19 @@ import { fetchUserCategories } from '../../store/category';
 import NewCategoryModal from '../NewCategoryModal';
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteCategory from '../ConfirmDeleteCategory';
+import UpdateCategoryForm from '../UpdateCategoryForm';
 
 
 function CategoriesTab() {
-    const [activeTab, setActiveTab] = useState('items');
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const userCategories = useSelector((state) => state.categories.categories.reverse());
     const [showDropdown, setShowDropdown] = useState(null);
 
+    const dropdownRef = useRef(null);
+
     const handleEditDropDown = (index) => {
+
         if (showDropdown === index) {
             setShowDropdown(null);
         } else {
@@ -23,9 +26,19 @@ function CategoriesTab() {
         }
     };
 
-    const handleTabChange = (tab) => {
-        setActiveTab(tab);
-    };
+    useEffect(() => {
+        const handleDocumentClick = (e) => {
+            if (showDropdown !== null && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setShowDropdown(null);
+            }
+        };
+
+        document.addEventListener('click', handleDocumentClick);
+
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+    }, [showDropdown]);
 
     useEffect(() => {
         if (sessionUser) {
@@ -48,10 +61,11 @@ function CategoriesTab() {
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th><div className="new-item-btn-container">
+                        <th id='last-heading'><div className="new-item-btn-container">
                             <OpenModalButton
                                 modalComponent={<NewCategoryModal />}
-                                buttonText='new category'
+                                buttonText=''
+                                buttonHTML={<span class="material-symbols-outlined">add</span>}
                             />
                         </div></th>
                     </tr>
@@ -64,16 +78,34 @@ function CategoriesTab() {
                             <td></td> {/* Display supplier name */}
                             <td></td>
                             <td></td>
-                            <td id='item-dots'><span class="material-symbols-outlined" onClick={() => handleEditDropDown(index)}>more_horiz</span>
+                            <td id='item-dots'>
+                                <span class="material-symbols-outlined"
+                                    id={showDropdown === index ? 'edit-dd-active' : ''}
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Stop event propagation
+                                        handleEditDropDown(index);
+                                    }}>
+                                    more_horiz</span>
                                 {showDropdown === index && (
-                                    <div className="item-edit-dropdown">
+                                    <div className="item-edit-dropdown-container" ref={dropdownRef}>
 
-                                        <button className="edit-supplier-option">edit</button>
-                                        <OpenModalButton
-                                            modalComponent={<ConfirmDeleteCategory />}
-                                            buttonText='delete'
-                                        />
+                                        <div className="item-edit-dropdown">
 
+                                            <OpenModalButton
+                                                className='edit-item-option'
+                                                modalComponent={<UpdateCategoryForm categoryId={category.id} categoryName={category.name} />}
+                                                buttonText='EDIT'
+                                                buttonHTML={<span class="material-symbols-outlined">EDIT</span>}
+                                            />
+
+                                            <OpenModalButton
+                                                className='delete-item-option'
+                                                modalComponent={<ConfirmDeleteCategory categoryId={category.id} categoryName={category.name} />}
+                                                buttonText='DELETE'
+                                                buttonHTML={<span class="material-symbols-outlined">delete</span>}
+
+                                            />
+                                        </div>
                                     </div>
                                 )}
                             </td>

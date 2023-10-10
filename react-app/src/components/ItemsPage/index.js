@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ItemsPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserItems } from '../../store/item';
@@ -9,6 +9,7 @@ import SuppliersTab from '../SuppliersTab';
 import OpenModalButton from '../OpenModalButton';
 import NewItemModal from '../NewItemModal';
 import ConfirmDeleteItem from '../ConfirmDeleteItem';
+import UpdateItemForm from '../UpdateItemForm';
 
 
 function ItemsPage() {
@@ -16,10 +17,12 @@ function ItemsPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
 
-
     const userItems = useSelector((state) => state.items.userItems);
     const userSuppliers = useSelector((state) => state.suppliers.suppliers);
     const userCategories = useSelector((state) => state.categories.categories); // Get user categories
+
+    const dropdownRef = useRef(null);
+
 
 
     const supplierDictionary = {};
@@ -38,8 +41,6 @@ function ItemsPage() {
         categoryName: categoryDictionary[item.category_id] || 'Unknown Category',
     }));
 
-    console.log('CATEGORIES: ', itemsWithSupplierAndCategoryNames)
-
     const [showDropdown, setShowDropdown] = useState(null);
 
     const handleEditDropDown = (index) => {
@@ -53,6 +54,20 @@ function ItemsPage() {
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     };
+
+    useEffect(() => {
+        const handleDocumentClick = (e) => {
+            if (showDropdown !== null && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setShowDropdown(null);
+            }
+        };
+
+        document.addEventListener('click', handleDocumentClick);
+
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+    }, [showDropdown]);
 
     useEffect(() => {
         if (sessionUser) {
@@ -91,53 +106,77 @@ function ItemsPage() {
                 {activeTab === 'suppliers' && <SuppliersTab />}
                 {activeTab === 'items' && (
                     <div className="items-content">
-                        <table className="items-table">
+
+                        <table className="items-table" cellpadding="0" cellspacing="0" border="0">
+
                             <thead id='items-heading-row'>
+
                                 <tr>
                                     <th>Name</th>
                                     <th>Category</th>
                                     <th>Supplier</th>
                                     <th>Low Stock At</th>
                                     <th>Suffix</th>
-                                    <th><div className="new-item-btn-container">
+                                    <th id='last-heading'><div className="new-item-btn-container">
                                         <OpenModalButton
                                             modalComponent={<NewItemModal />}
-                                            buttonText='new item'
+                                            buttonText=''
+                                            buttonHTML={<span class="material-symbols-outlined">add</span>}
                                         />
-                                    </div></th>
+                                    </div>
+                                    </th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {itemsWithSupplierAndCategoryNames.map((item, index) => (
-                                    <tr key={item.id} className={index === itemsWithSupplierAndCategoryNames.length - 1 ? 'last-row' : ''}>
-                                        <td id='item-name'>{item.name}</td>
-                                        <td id='item-category'>{item.categoryName}</td>
-                                        <td>{item.supplierName}</td>
-                                        <td>{item.low_stock_at}</td>
-                                        <td>{item.suffix}</td>
-                                        <td id='item-dots'><span class="material-symbols-outlined" onClick={() => handleEditDropDown(index)}>more_horiz</span>
-                                            {showDropdown === index && (
-                                                <div className="item-edit-dropdown">
-                                                    
-                                                    <button className="edit-item-option">edit</button>
-                                                    <OpenModalButton
-                                                        modalComponent={<ConfirmDeleteItem />}
-                                                        buttonText='delete'
-                                                    />
-
-                                                </div>
-                                            )}
-                                        </td>
-                                    </tr>
-                                )).reverse()}
-                            </tbody>
                         </table>
+                        <div className="table-content">
 
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    {itemsWithSupplierAndCategoryNames.map((item, index) => (
+                                        <tr key={item.id} className={index === itemsWithSupplierAndCategoryNames.length - 1 ? 'last-row' : ''}>
+                                            <td id='item-name'>{item.name}</td>
+                                            <td id='item-category'>{item.categoryName}</td>
+                                            <td>{item.supplierName}</td>
+                                            <td>{item.low_stock_at}</td>
+                                            <td>{item.suffix}</td>
+                                            <td id='item-dots'>
+                                                <span class="material-symbols-outlined"
+                                                    id={showDropdown === index ? 'edit-dd-active' : ''}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation(); // Stop event propagation
+                                                        handleEditDropDown(index);
+                                                    }}>
+                                                    more_horiz</span>
+                                                {showDropdown === index && (
+                                                    <div className="item-edit-dropdown-container" ref={dropdownRef}>
+                                                        <div className="item-edit-dropdown">
+                                                            <OpenModalButton
+                                                                className='edit-item-option'
+                                                                modalComponent={<UpdateItemForm itemId={item.id} itemName={item.name} />}
+                                                                buttonText='EDIT'
+                                                                buttonHTML={<span class="material-symbols-outlined">edit</span>}
+                                                            />                                                            <OpenModalButton
+                                                                className='delete-item-option'
+                                                                modalComponent={<ConfirmDeleteItem itemId={item.id} initialData={item} />}
+                                                                buttonText='DELETE'
+                                                                buttonHTML={<span class="material-symbols-outlined">delete</span>}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))
+                                        // .reverse()
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     );
 }
 

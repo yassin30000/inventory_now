@@ -1,6 +1,13 @@
 const SET_SINGLE_SUPPLIER = 'supplier/setSingle';
 const SET_NEW_SUPPLIER = 'supplier/setNewSupplier'
 const SET_SUPPLIERS = 'supplier/setSuppliers';
+const DELETE_USER_SUPPLIER = 'supplier/DELETE_USER_SUPPLIER';
+const UPDATE_USER_SUPPLIER = 'supplier/UPDATE_USER_SUPPLIER';
+
+const updateUserSupplier = (updatedSupplier) => ({
+    type: UPDATE_USER_SUPPLIER,
+    payload: updatedSupplier,
+});
 
 const setSingleSupplier = (supplier) => ({
     type: SET_SINGLE_SUPPLIER,
@@ -17,6 +24,31 @@ const setNewSupplier = (supplier) => ({
     payload: supplier
 });
 
+const deleteUserSupplier = (supplierId) => ({
+    type: DELETE_USER_SUPPLIER,
+    payload: supplierId,
+});
+
+export const updateUserSupplierById = (supplierId, updatedData) => async (dispatch) => {
+    const response = await fetch(`/api/suppliers/${supplierId}`, {
+        method: 'PATCH', // Use PATCH for updating
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
+    });
+
+    if (response.ok) {
+        // Supplier updated successfully
+        const updatedSupplier = await response.json();
+        dispatch(updateUserSupplier(updatedSupplier));
+        return updatedSupplier;
+    } else {
+        // Handle error cases
+        const data = await response.json();
+        return data.errors;
+    }
+};
 
 export const fetchSingleSupplier = (supplierId) => async (dispatch) => {
     const response = await fetch(`/api/suppliers/${supplierId}`);
@@ -61,6 +93,22 @@ export const createNewSupplier = (formData) => async (dispatch) => {
     }
 }
 
+export const deleteUserSupplierById = (supplierId) => async (dispatch) => {
+    const response = await fetch(`/api/suppliers/${supplierId}`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        // Supplier deleted successfully
+        dispatch(deleteUserSupplier(supplierId));
+        return null;
+    } else {
+        // Handle error cases
+        const data = await response.json();
+        return data.errors;
+    }
+};
+
 const initialState = {
     suppliers: [],
     singleSupplier: null,
@@ -78,6 +126,23 @@ const supplierReducer = (state = initialState, action) => {
 
         case SET_NEW_SUPPLIER:
             return { ...state, suppliers: [...state.suppliers, action.payload] }
+
+        case DELETE_USER_SUPPLIER:
+            const updatedSuppliers = state.suppliers.filter(
+                (supplier) => supplier.id !== action.payload
+            );
+            return { ...state, suppliers: updatedSuppliers };
+
+        case UPDATE_USER_SUPPLIER:
+            // Find and update the supplier in suppliers array
+            const newUpdatedSuppliers = state.suppliers.map((supplier) => {
+                if (supplier.id === action.payload.id) {
+                    return action.payload;
+                } else {
+                    return supplier;
+                }
+            });
+            return { ...state, suppliers: newUpdatedSuppliers };
 
         default:
             return state;
