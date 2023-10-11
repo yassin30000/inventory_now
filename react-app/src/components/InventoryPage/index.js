@@ -5,13 +5,13 @@ import { useDispatch, useSelector, useStore } from 'react-redux';
 import OpenModalButton from '../OpenModalButton';
 import InventorySheetForm from '../InventorySheetForm'
 import ConfirmDeleteSheet from '../ConfirmDeleteSheet';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function InventoryPage() {
-
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const allSheetsData = useSelector(state => state.inventorySheets.inventorySheets);
-
     const allSheets = allSheetsData ? allSheetsData.inventory_sheets : [];
 
     const formatDate = (dateString) => {
@@ -99,8 +99,9 @@ function InventoryPage() {
                                             buttonText=''
                                         />
 
+
                                         <button id='goToIsButton'>
-                                            <span class="material-symbols-outlined">arrow_forward</span>
+                                            <span class="material-symbols-outlined" onClick={() => history.push(`/inventory-sheets/${sheet.id}`)}>arrow_forward</span>
                                         </button>
 
 

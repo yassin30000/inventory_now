@@ -9,6 +9,7 @@ import InventorySheetForm from "./components/InventorySheetForm";
 import Dashboard from "./components/Dashboard";
 import ItemsPage from "./components/ItemsPage";
 import InventoryPage from "./components/InventoryPage";
+import SheetDetailsPage from "./components/SheetDetailsPage";
 
 
 function App() {
@@ -36,8 +37,12 @@ function App() {
 						<SignupFormPage />
 					</Route>
 					
-					<Route path="/inventory-sheets">
+					<Route exact path="/inventory-sheets">
 						<InventoryPage />
+					</Route>
+
+					<Route path="/inventory-sheets/:sheetId">
+						<SheetDetailsPage />
 					</Route>
 
 					<Route path="/items">

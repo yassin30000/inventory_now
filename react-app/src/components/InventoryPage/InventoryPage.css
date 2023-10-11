@@ -158,8 +158,8 @@ body {
 
 .deleteIsButton {
 	/* border: 1px solid #F44336; */
-	border: 1px solid #ff0000;
-	color: #ff0000;
+	border: 1px solid #DC143C;
+	color: #DC143C;
 	background-color: #1e1e1e;
 	/* color: #F44336; */
 	border-radius: 10px;
@@ -187,7 +187,7 @@ body {
 .deleteIsButton:hover {
 	transform: scale(1.1);
 	cursor: pointer;
-	background-color: #ff0000;
+	background-color: #DC143C;
 	color: white;
 }
 
