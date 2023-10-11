@@ -112,7 +112,7 @@ function ItemsPage() {
                             <thead id='items-heading-row'>
 
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Item Name</th>
                                     <th>Category</th>
                                     <th>Supplier</th>
                                     <th>Low Stock At</th>

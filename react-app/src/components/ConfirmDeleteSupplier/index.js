@@ -17,9 +17,17 @@ function ConfirmDeleteSupplier({ supplierId, supplierName }) {
 
     return (
         <>
-            <h1>confirm delete {supplierName}?</h1>
-            <button onClick={() => handleDelete(supplierId)}>Yes</button>
-            <button onClick={() => closeModal()}>No</button>
+
+            <div className="delete-item-container">
+                <div className="delete-item-heading-container">
+                    <div>confirm delete <span>{supplierName}</span>?</div>
+                </div>
+                <div className="delete-item-btns">
+                    <button id='delete-item-yes' onClick={() => handleDelete(supplierId)}>Yes</button>
+                    <button id='delete-item-no' onClick={() => closeModal()}>No</button>
+                </div>
+            </div>
+
         </>
     )
 }
