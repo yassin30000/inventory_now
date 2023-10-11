@@ -32,24 +32,31 @@ function UpdateSupplierForm({ supplierId, initialName }) {
     }, [dispatch, supplierId]);
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <button className="close-button" onClick={closeModal}>
-                    Close
-                </button>
-                <h2>Update Supplier</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Supplier Name:
+        <div className="new-item-modal-container" id='new-cat-modal'>
+            <div className="new-item-modal-content">
+                <div className="new-item-modal-top-container">
+                    <div className='new-item-modal-heading'>update supplier <span>{supplierName.length < 40 ? supplierName + '.': supplierName.slice(0,40) + '...'}</span></div>
+
+                    <span class="material-symbols-outlined" onClick={closeModal}>close</span>
+
+                </div>
+                <div className="new-item-modal-bottom-container">
+
+                    <form onSubmit={handleSubmit}>
+
                         <input
                             type="text"
                             value={supplierName}
                             onChange={(e) => setSupplierName(e.target.value)}
                             required
+                            placeholder='Name'
+
                         />
-                    </label>
-                    <button type="submit">Update Supplier</button>
-                </form>
+
+                        <button id='create-cat-btn' type="submit">Save Supplier</button>
+                    </form>
+                </div>
+
             </div>
         </div>
     );

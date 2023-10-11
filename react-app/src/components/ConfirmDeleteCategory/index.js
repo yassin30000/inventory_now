@@ -6,8 +6,6 @@ function ConfirmDeleteCategory({ categoryId, categoryName }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
-    console.log(categoryId, categoryName)
-
     const handleDelete = async (categoryId) => {
 
         await dispatch(deleteUserCategoryById(categoryId))
@@ -17,11 +15,20 @@ function ConfirmDeleteCategory({ categoryId, categoryName }) {
     }
 
     return (
-        <>
-            <h1>confirm delete {categoryName}?</h1>
-            <button onClick={() => handleDelete(categoryId)}>Yes</button>
-            <button onClick={() => closeModal()}>No</button>
-        </>
+        <div className="delete-item-container">
+            <div className="delete-item-heading-container">
+
+                <div>confirm delete <span>{categoryName}</span>?</div>
+
+            </div>
+
+
+            <div className="delete-item-btns">
+                <button id='delete-item-yes' onClick={() => handleDelete(categoryId)}>Yes</button>
+                <button id='delete-item-no' onClick={() => closeModal()}>No</button>
+            </div>
+
+        </div>
     );
 }
 

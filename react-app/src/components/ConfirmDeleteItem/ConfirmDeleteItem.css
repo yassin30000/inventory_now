@@ -8,6 +8,11 @@
 	font-weight: 500;
 }
 
+.delete-item-heading-container span {
+	font-style: italic;
+	font-weight: 300;
+}
+
 .delete-item-btns {
 	display: flex;
 	gap: 25px;
@@ -16,6 +21,7 @@
 #delete-item-yes {
 	background-color: #bb86fc;
 	border: 2px solid #bb86fc;
+	font-weight: 500;
 }
 
 #delete-item-yes:hover {
@@ -27,6 +33,8 @@
 }
 
 #delete-item-no {
+	font-weight: 500;
+
 	background-color: #242424;
 	border: 2px solid #dc143c;
 	color: #dc143c;

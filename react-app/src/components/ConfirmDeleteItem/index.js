@@ -24,11 +24,11 @@ function ConfirmDeleteItem({ itemId }) {
             {item && (
                 <div className="delete-item-container">
                     <div className="delete-item-heading-container">
-                        <div>confirm delete {item.name}?</div>
+                        <div>confirm delete <span>{item.name}</span>?</div>
                     </div>
                     <div className="delete-item-btns">
                         <button id='delete-item-yes' onClick={() => handleDelete(itemId)}>Yes</button>
-                        <button id='delete-item-no' onClick={() => closeModal()}>no</button>
+                        <button id='delete-item-no' onClick={() => closeModal()}>No</button>
                     </div>
                 </div>
             )}
