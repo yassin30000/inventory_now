@@ -38,76 +38,86 @@ function NewItemModal() {
     };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <button className="close-button" onClick={closeModal}>
-                    Close
-                </button>
-                <h2>New Item</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Item Name:
-                        <input
-                            type="text"
-                            value={itemName}
-                            onChange={(e) => setItemName(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Category:
-                        <select
-                            value={categoryId}
-                            onChange={(e) => setCategoryId(e.target.value)}
-                            required
-                        >
-                            <option value="" disabled>
-                                Select a category
-                            </option>
-                            {categories.map((category) => (
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
+        <div className="new-item-modal-container">
+            <div className="new-item-modal-content">
+
+                <div className="new-item-modal-top-container">
+                    <div className='new-item-modal-heading'>create a new item.</div>
+
+                    <span class="material-symbols-outlined" onClick={closeModal}>close</span>
+
+                </div>
+
+                <div className="new-item-modal-bottom-container">
+
+                    <form onSubmit={handleSubmit}>
+
+                        <div className="inp-grid">
+
+                            <input
+                                type="text"
+                                value={itemName}
+                                onChange={(e) => setItemName(e.target.value)}
+                                required
+                                placeholder='Name'
+                            />
+
+
+                            <input
+                                type="text"
+                                value={suffix}
+                                onChange={(e) => setSuffix(e.target.value)}
+                                placeholder='Suffix (containers, bags, etc.)'
+                                required
+                            />
+
+                            <select
+                                value={categoryId}
+                                onChange={(e) => setCategoryId(e.target.value)}
+
+                            >
+                                <option value="" disabled>
+                                    Select Category
                                 </option>
-                            ))}
-                        </select>
-                    </label>
-                    <label>
-                        Supplier:
-                        <select
-                            value={supplierId}
-                            onChange={(e) => setSupplierId(e.target.value)}
-                            required
-                        >
-                            <option value="" disabled>
-                                Select a supplier
-                            </option>
-                            {suppliers.map((supplier) => (
-                                <option key={supplier.id} value={supplier.id}>
-                                    {supplier.name}
+                                {categories.map((category) => (
+                                    <option key={category.id} value={category.id}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <select
+                                value={supplierId}
+                                onChange={(e) => setSupplierId(e.target.value)}
+                            >
+                                <option value="" disabled>
+                                    Select Supplier
                                 </option>
-                            ))}
-                        </select>
-                    </label>
-                    <label>
-                        Low Stock:
+                                {suppliers.map((supplier) => (
+                                    <option key={supplier.id} value={supplier.id}>
+                                        {supplier.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                         <input
+                            id='lowstock-inp'
                             type="number"
                             value={lowStock}
                             onChange={(e) => setLowStock(e.target.value)}
+                            placeholder='Low Stock At'
                             required
                         />
-                    </label>
-                    <label>
-                        Suffix:
-                        <input
-                            type="text"
-                            value={suffix}
-                            onChange={(e) => setSuffix(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <button type="submit">Create Item</button>
-                </form>
+
+
+                        <p>this will help us notify you when an item is low stock</p>
+
+                        <div className="submit-btn-container">
+
+                            <button type="submit">Create Item</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

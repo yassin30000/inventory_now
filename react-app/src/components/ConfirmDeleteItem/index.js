@@ -1,8 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteUserItemById, fetchUserItems } from "../../store/item";
 import { useModal } from "../../context/Modal";
+import './ConfirmDeleteItem.css'
 
 function ConfirmDeleteItem({ itemId }) {
+
+    const items = useSelector(state => state.items.userItems);
+    const item = items.find(item => item.id === itemId)
+
+    console.log(item)
 
     const { closeModal } = useModal();
     const dispatch = useDispatch();
@@ -15,9 +21,17 @@ function ConfirmDeleteItem({ itemId }) {
 
     return (
         <>
-            <h1>confirm delete item?</h1>
-            <button onClick={() => handleDelete(itemId)}>Yes</button>
-            <button onClick={() => closeModal()}>no</button>
+            {item && (
+                <div className="delete-item-container">
+                    <div className="delete-item-heading-container">
+                        <div>confirm delete {item.name}?</div>
+                    </div>
+                    <div className="delete-item-btns">
+                        <button id='delete-item-yes' onClick={() => handleDelete(itemId)}>Yes</button>
+                        <button id='delete-item-no' onClick={() => closeModal()}>no</button>
+                    </div>
+                </div>
+            )}
         </>
     )
 }
