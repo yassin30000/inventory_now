@@ -56,21 +56,29 @@ function InventorySheetForm({ sheetId }) {
                     <h1>Inventory For {inventorySheet && formatDate(inventorySheet.created_at)}</h1>
 
                     <form onSubmit={handleSubmit}>
-                        {inventorySheet?.inventory_items.map((item) => (
-                            <div key={item.id}>
-                                <label htmlFor={`quantity-${item.id}`}>{item.item.name}</label>
-                                <input
-                                    type="number"
-                                    id={`quantity-${item.id}`}
-                                    name={`quantity-${item.id}`}
-                                    value={quantityUpdates[item.id] || item.quantity}
-                                    onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                                />
-                                <span>{item.item.suffix}</span>
-                            </div>
-                        ))}
-                        <button type="submit">Save</button>
+                        <div className="i-s-form-content">
+
+                            {inventorySheet?.inventory_items.map((item) => (
+                                <div id="i-s-item" key={item.id}>
+                                    <label htmlFor={`quantity-${item.id}`}>{item.item.name}</label>
+                                    <input
+                                        type="number"
+                                        id={`quantity-${item.id}`}
+                                        name={`quantity-${item.id}`}
+                                        value={quantityUpdates[item.id] || item.quantity}
+                                        onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                                    />
+                                    <span>{item.item.suffix}</span>
+                                </div>
+                            ))}
+                        </div>
+
                         {/* <button onClick={() => handleDelete()}>Delete</button> */}
+
+                        <div className="i-s-btn-container">
+
+                            <button id='i-s-button' type="submit">Save</button>
+                        </div>
                     </form>
 
                 </div>

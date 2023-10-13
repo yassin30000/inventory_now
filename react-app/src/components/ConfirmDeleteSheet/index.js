@@ -21,17 +21,24 @@ function ConfirmDeleteSheet({ sheetId }) {
 
 
     return (
-        <>
-            <div className="confirm-delete-sheet-container">
-                Are you sure you want to delete this sheet?
+        <div className="delete-item-container">
 
-                <div className="confirm-delete-sheet-btn-container">
 
-                    <button onClick={() => handleDelete(sheetId)}>yes</button>
-                    <button onClick={() => closeModal()}>no</button>
-                </div>
+            <div className="delete-item-heading-container">
+
+                <div>confirm delete this sheet?</div>
+
             </div>
-        </>
+
+
+
+            <div className="delete-item-btns">
+                <button id='delete-item-yes' onClick={() => handleDelete(sheetId)}>Yes</button>
+                <button id='delete-item-no' onClick={() => closeModal()}>No</button>
+            </div>
+        </div>
+
+
     )
 }
 
