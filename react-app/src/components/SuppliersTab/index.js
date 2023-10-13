@@ -48,7 +48,7 @@ function SuppliersTab() {
             dispatch(fetchUserItems());
         }
 
-    }, [dispatch]);
+    }, [dispatch, sessionUser]);
 
     return (
         <div className="items-content">

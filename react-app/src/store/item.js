@@ -65,6 +65,8 @@ export const createNewItem = (formData) => async (dispatch) => {
         body: JSON.stringify(formData),
     });
 
+    console.log('ITEM FROM STORE: ', response)
+
     if (response.ok) {
         const newItem = await response.json();
         dispatch(setNewItem(newItem));
