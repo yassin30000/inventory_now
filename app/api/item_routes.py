@@ -15,12 +15,22 @@ def create_item():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        categoryId = form.data['category_id']
+        supplierId = form.data['supplier_id']
+
+        if categoryId == -1:
+            categoryId = None
+
+        if supplierId == -1:
+            supplierId = None
+
         item = Item(
             name=form.data['name'],
-            category_id=form.data['category_id'],
-            supplier_id=form.data['supplier_id'],
+            category_id=categoryId,
+            supplier_id=supplierId,
             low_stock_at=form.data['low_stock_at'],
             suffix=form.data['suffix'],
+            active=True,
             user_id=current_user.id
         )
         db.session.add(item)
@@ -90,7 +100,8 @@ def delete_item(item_id):
 
     if item:
         if item.user_id == current_user.id:
-            db.session.delete(item)
+            item.active = False
+            # db.session.delete(item)
             db.session.commit()
             return {'message': 'Item deleted successfully'}, 200
         else:

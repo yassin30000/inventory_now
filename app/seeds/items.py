@@ -13,7 +13,8 @@ def seed_items():
             'category_id': 1,
             'supplier_id': 1,
             'low_stock_at': 5,
-            'suffix': 'bags'
+            'suffix': 'bags',
+            'active': True
         },
         {
             'name': 'Item 2',
@@ -21,7 +22,9 @@ def seed_items():
             'category_id': 2,
             'supplier_id': 2,
             'low_stock_at': 10,
-            'suffix': 'bags'
+            'suffix': 'bags',
+            'active': True
+
         },
         {
             'name': 'Item 3',
@@ -29,7 +32,9 @@ def seed_items():
             'category_id': 3,
             'supplier_id': 3,
             'low_stock_at': 3,
-            'suffix': 'containers'
+            'suffix': 'containers',
+            'active': True
+
         },
         {
             'name': 'Item 4',
@@ -37,7 +42,9 @@ def seed_items():
             'category_id': 4,
             'supplier_id': 4,
             'low_stock_at': 7,
-            'suffix': 'containers'
+            'suffix': 'containers',
+            'active': True
+
         },
         {
             'name': 'Item 5',
@@ -45,7 +52,9 @@ def seed_items():
             'category_id': 5,
             'supplier_id': 5,
             'low_stock_at': 6,
-            'suffix': 'containers'
+            'suffix': 'containers',
+            'active': True
+
         }
     ]
 

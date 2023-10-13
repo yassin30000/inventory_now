@@ -16,6 +16,7 @@ function ConfirmDeleteItem({ itemId }) {
     const handleDelete = async (id) => {
         await dispatch(deleteUserItemById(id));
         await dispatch(fetchUserItems());
+        // item.active = false;
         closeModal();
     }
 

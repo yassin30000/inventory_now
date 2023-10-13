@@ -26,11 +26,12 @@ function NewItemModal() {
 
         const newItem = {
             name: itemName,
-            category_id: categoryId, // Use categoryId instead of category
-            supplier_id: supplierId, // Use supplierId instead of supplier
+            category_id: categoryId ? categoryId : -1, // Use categoryId instead of category
+            supplier_id: supplierId ? supplierId : -1, // Use supplierId instead of supplier
             low_stock_at: lowStock,
             suffix,
         };
+        console.log('NEW ITEM', newItem)
 
         await dispatch(createNewItem(newItem));
 

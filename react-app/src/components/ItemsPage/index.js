@@ -133,42 +133,47 @@ function ItemsPage() {
                             <table cellpadding="0" cellspacing="0" border="0">
                                 <tbody>
                                     {itemsWithSupplierAndCategoryNames.map((item, index) => (
-                                        <tr key={item.id} className={index === itemsWithSupplierAndCategoryNames.length - 1 ? 'last-row' : ''}>
-                                            <td id='item-name'>{item.name}</td>
-                                            <td id='item-category'>{item.categoryName}</td>
-                                            <td>{item.supplierName}</td>
-                                            <td>{item.low_stock_at}</td>
-                                            <td>{item.suffix}</td>
-                                            <td id='item-dots'>
-                                                <span class="material-symbols-outlined"
-                                                    id={showDropdown === index ? 'edit-dd-active' : ''}
-                                                    onClick={(e) => {
-                                                        e.stopPropagation(); // Stop event propagation
-                                                        handleEditDropDown(index);
-                                                    }}>
-                                                    more_horiz</span>
-                                                {showDropdown === index && (
-                                                    <div className="item-edit-dropdown-container" ref={dropdownRef}>
-                                                        <div className="item-edit-dropdown">
-                                                            <OpenModalButton
-                                                                className='edit-item-option'
-                                                                modalComponent={<UpdateItemForm itemId={item.id} itemName={item.name} />}
-                                                                buttonText='EDIT'
-                                                                buttonHTML={<span class="material-symbols-outlined">edit</span>}
-                                                            />                                                            <OpenModalButton
-                                                                className='delete-item-option'
-                                                                modalComponent={<ConfirmDeleteItem itemId={item.id} initialData={item} />}
-                                                                buttonText='DELETE'
-                                                                buttonHTML={<span class="material-symbols-outlined">delete</span>}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    ))
-                                        // .reverse()
-                                    }
+                                        <>{console.log(item)}
+                                            {item.active && (
+
+                                                <tr key={item.id} className={index === itemsWithSupplierAndCategoryNames.length - 1 ? 'last-row' : ''}>
+                                                    <td id='item-name'>{item.name}</td>
+                                                    <td id='item-category'>{item.categoryName}</td>
+                                                    <td>{item.supplierName}</td>
+                                                    <td>{item.low_stock_at}</td>
+                                                    <td>{item.suffix}</td>
+                                                    <td id='item-dots'>
+                                                        <span class="material-symbols-outlined"
+                                                            id={showDropdown === index ? 'edit-dd-active' : ''}
+                                                            onClick={(e) => {
+                                                                e.stopPropagation(); // Stop event propagation
+                                                                handleEditDropDown(index);
+                                                            }}>
+                                                            more_horiz</span>
+                                                        {showDropdown === index && (
+                                                            <div className="item-edit-dropdown-container" ref={dropdownRef}>
+                                                                <div className="item-edit-dropdown">
+                                                                    <OpenModalButton
+                                                                        className='edit-item-option'
+                                                                        modalComponent={<UpdateItemForm itemId={item.id} itemName={item.name} />}
+                                                                        buttonText='EDIT'
+                                                                        buttonHTML={<span class="material-symbols-outlined">edit</span>}
+                                                                    />                                                            <OpenModalButton
+                                                                        className='delete-item-option'
+                                                                        modalComponent={<ConfirmDeleteItem itemId={item.id} initialData={item} />}
+                                                                        buttonText='DELETE'
+                                                                        buttonHTML={<span class="material-symbols-outlined">delete</span>}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            )}
+
+                                        </>
+                                    ))}
+
                                 </tbody>
                             </table>
                         </div>
