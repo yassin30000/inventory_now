@@ -58,11 +58,10 @@ function Dashboard() {
                                         modalComponent={<InventorySheetForm sheetId={sheet.id} />}
                                         buttonHTML={<span class="material-symbols-outlined">edit</span>}
                                     />
-                                    <OpenModalButton
-                                        className={'goto-inventory-dashboard-btn'}
-                                        modalComponent={<InventorySheetForm sheetId={sheet.id} />}
-                                        buttonHTML={<span class="material-symbols-outlined">arrow_forward</span>}
-                                    />
+
+                                    <button className='goto-inventory-dashboard-btn'>
+                                        <span class="material-symbols-outlined" onClick={() => history.push(`/inventory-sheets/${sheet.id}`)}>arrow_forward</span>
+                                    </button>
 
                                 </div>
                             </div>

@@ -75,6 +75,9 @@ function UpdateItemForm({ itemId }) {
                                 value={categoryId}
                                 onChange={(e) => setCategoryId(e.target.value)}
                             >
+                                <option value="" disabled>
+                                    Select Category
+                                </option>
                                 {categories.map((category) => (
                                     <option key={category.id} value={category.id}>
                                         {category.name}
@@ -85,8 +88,13 @@ function UpdateItemForm({ itemId }) {
 
                             <select
                                 value={supplierId}
+
                                 onChange={(e) => setSupplierId(e.target.value)}
                             >
+                                {console.log('SUPPLIER ID', supplierId)}
+                                <option value="" disabled>
+                                    No Suppliers
+                                </option>
                                 {suppliers.map((supplier) => (
                                     <option key={supplier.id} value={supplier.id}>
                                         {supplier.name}
