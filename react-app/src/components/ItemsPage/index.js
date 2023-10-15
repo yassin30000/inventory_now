@@ -10,6 +10,7 @@ import OpenModalButton from '../OpenModalButton';
 import NewItemModal from '../NewItemModal';
 import ConfirmDeleteItem from '../ConfirmDeleteItem';
 import UpdateItemForm from '../UpdateItemForm';
+import NoItems from '../NoItems';
 
 
 function ItemsPage() {
@@ -23,7 +24,9 @@ function ItemsPage() {
 
     const dropdownRef = useRef(null);
 
+    const activeItems = userItems.filter(item => item.active)
 
+    console.log('user items', activeItems)
 
     const supplierDictionary = {};
     userSuppliers.forEach((supplier) => {
@@ -102,12 +105,14 @@ function ItemsPage() {
                 </button>
             </div>
             <div className="tab-content">
+
                 {activeTab === 'categories' && <CategoriesTab />}
                 {activeTab === 'suppliers' && <SuppliersTab />}
                 {activeTab === 'items' && (
-                    <div className="items-content">
 
+                    <div className="items-content">
                         <table className="items-table" cellpadding="0" cellspacing="0" border="0">
+
 
                             <thead id='items-heading-row'>
 
@@ -129,7 +134,9 @@ function ItemsPage() {
                             </thead>
                         </table>
                         <div className="table-content">
-
+                            {activeItems && activeItems.length === 0 && (
+                                <NoItems missing={'items'} element={'item'} />
+                            )}
                             <table cellpadding="0" cellspacing="0" border="0">
                                 <tbody>
                                     {itemsWithSupplierAndCategoryNames.map((item, index) => (

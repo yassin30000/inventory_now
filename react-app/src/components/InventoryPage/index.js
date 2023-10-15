@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton';
 import InventorySheetForm from '../InventorySheetForm'
 import ConfirmDeleteSheet from '../ConfirmDeleteSheet';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import NoItems from '../NoItems';
 
 function InventoryPage() {
     const history = useHistory();
@@ -56,7 +57,9 @@ function InventoryPage() {
     return (
         <>
             <div className="inventory-page-container">
-
+                {allSheets &&  allSheets.length === 0 && (
+                    <NoItems missing={'inventory sheets'} element={'inventorySheet'} />
+                )}
                 <div className="inventories">
                     {allSheets && allSheets.map((sheet) => (
                         <div className="inventory" key={sheet.id}>
@@ -111,6 +114,7 @@ function InventoryPage() {
                         </div>
                     )).reverse()}
                 </div>
+
             </div>
         </>
     )
