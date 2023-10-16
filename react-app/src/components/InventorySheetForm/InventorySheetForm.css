@@ -1,32 +1,35 @@
 .i-s-form-container {
 	width: 600px;
-	height: 75vh;
+	/* height: 75vh; */
+
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+
+	max-height: 75vh;
+	height: max-content;
 }
 
 .i-s-form-container form {
 	height: 100%;
 	width: 100%;
 	padding-top: 20px;
-	/* background-color: red; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow: auto;
 }
 
 .i-s-form-content {
-	height: 85%;
+	/* height: 85%; */
 	width: 100%;
 	overflow-x: scroll;
-	/* background-color: red; */
-	/* margin-top: 20px;
-	margin-bottom: 20px; */
-
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+
+	height: max-content;
+	max-height: 85%;
 }
 
 #i-s-item {
@@ -77,11 +80,16 @@
 	transition: all 0.3s ease;
 }
 
-.i-s-btn-container {
+#i-s-button:hover {
+	cursor: pointer;
+	background-color: white;
+	color: #3e3e3e;
+}
 
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
+.i-s-btn-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80px;
 }

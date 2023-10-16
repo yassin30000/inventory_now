@@ -21,6 +21,7 @@ function ItemsPage() {
     const userItems = useSelector((state) => state.items.userItems);
     const userSuppliers = useSelector((state) => state.suppliers.suppliers);
     const userCategories = useSelector((state) => state.categories.categories); // Get user categories
+    console.log('categories', userCategories)
 
     const dropdownRef = useRef(null);
 

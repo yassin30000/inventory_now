@@ -74,7 +74,7 @@ function SuppliersTab() {
                     {userSuppliers.map((supplier, index) => (
                         <tr key={supplier.id} className={index === userSuppliers.length - 1 ? 'last-row' : ''}>
                             <td id='item-name'>{supplier.name}</td>
-                            <td id='item-category'>{supplier.items.length}</td>
+                            <td id='item-category'>{supplier.items.filter(item => item.active).length}</td>
                             <td></td>
                             <td></td>
                             <td></td>

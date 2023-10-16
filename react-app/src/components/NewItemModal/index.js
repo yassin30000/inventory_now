@@ -3,6 +3,9 @@ import './NewItemModal.css';
 import { useModal } from '../../context/Modal';
 import { createNewItem } from '../../store/item';
 import { useDispatch, useSelector } from 'react-redux';
+import { createNewCategory } from '../../store/category';
+import { createNewSupplier } from '../../store/supplier';
+
 
 function NewItemModal() {
     const [itemName, setItemName] = useState('');
@@ -13,28 +16,27 @@ function NewItemModal() {
 
     const { closeModal } = useModal();
     const dispatch = useDispatch();
-    const categories = useSelector((state) => state.categories.categories); // Get categories from the store
-    const suppliers = useSelector((state) => state.suppliers.suppliers); // Get suppliers from the store
-
-    useEffect(() => {
-        // Fetch categories and suppliers when the component loads
-        // Dispatch actions to fetch categories and suppliers here
-    }, [dispatch]);
+    const categories = useSelector((state) => state.categories.categories);
+    const suppliers = useSelector((state) => state.suppliers.suppliers);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        let unCategory = categories.find(cat => cat.name === 'Uncategorized');
+        let noSupplier = suppliers.find(sup => sup.name === 'No Supplier')
+
+        if (!unCategory) unCategory = await dispatch(createNewCategory({ name: 'Uncategorized' }))
+        if (!noSupplier) noSupplier = await dispatch(createNewSupplier({ name: 'No Supplier' }))
+
         const newItem = {
             name: itemName,
-            category_id: categoryId ? categoryId : -1, // Use categoryId instead of category
-            supplier_id: supplierId ? supplierId : -1, // Use supplierId instead of supplier
+            category_id: categoryId ? categoryId : unCategory.id,
+            supplier_id: supplierId ? supplierId : noSupplier.id,
             low_stock_at: lowStock,
             suffix,
         };
-        console.log('NEW ITEM', newItem)
 
         await dispatch(createNewItem(newItem));
-
         closeModal();
     };
 
@@ -85,6 +87,7 @@ function NewItemModal() {
                                         {category.name}
                                     </option>
                                 ))}
+
                             </select>
 
                             <select
