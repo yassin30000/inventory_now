@@ -74,7 +74,7 @@ function CategoriesTab() {
                     {userCategories.reverse().map((category, index) => (
                         <tr key={category.id} className={index === userCategories.length - 1 ? 'last-row' : ''}>
                             <td id='item-name'>{category.name}</td>
-                            <td id='item-category'>{category.items.length}</td>
+                            <td id='item-category'>{category.items.filter(item => item.active).length}</td>
                             <td></td> {/* Display supplier name */}
                             <td></td>
                             <td></td>

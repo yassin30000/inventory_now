@@ -31,7 +31,7 @@ function InventoryPage() {
     }
 
     const lowStockTotal = (sheet) => {
-        const sheetItems = sheet.inventory_items;
+        const sheetItems = sheet.inventory_items.filter(item => item.item.active);
         let total = 0;
         sheetItems.forEach(item => {
             if (isLowStock(item, item.quantity)) total += 1;
@@ -57,7 +57,7 @@ function InventoryPage() {
     return (
         <>
             <div className="inventory-page-container">
-                {allSheets &&  allSheets.length === 0 && (
+                {allSheets && allSheets.length === 0 && (
                     <NoItems missing={'inventory sheets'} element={'inventorySheet'} />
                 )}
                 <div className="inventories">
@@ -68,7 +68,7 @@ function InventoryPage() {
                                     <div className="inventory-date">{formatDate(sheet.created_at)}</div>
                                     <div className="last-updated">last updated: {formatDate(getLatestItemUpdatedAt(sheet))}</div>
                                     <ul className="inventory-left-align">
-                                        {sheet.inventory_items.slice(0, 4).map((item, index) => (
+                                        {sheet.inventory_items.filter(item => item.item.active).slice(0, 4).map((item, index) => (
                                             <div className="inventory-row" key={item.id} id={"inventoryRow" + index}>
                                                 <li className="inventory-item-name">{item.item.name}</li>
                                                 <span className="inventory-item-quantity">{`x${item.quantity} ${item.item.suffix}`}</span>

@@ -15,7 +15,6 @@ function InventorySheetForm({ sheetId }) {
     useEffect(() => {
         dispatch(fetchInventorySheet(sheetId));
         dispatch(fetchAllInventorySheets());
-
     }, [dispatch, sheetId]);
 
     const [quantityUpdates, setQuantityUpdates] = useState({});
@@ -58,7 +57,8 @@ function InventorySheetForm({ sheetId }) {
                     <form onSubmit={handleSubmit}>
                         <div className="i-s-form-content">
 
-                            {inventorySheet?.inventory_items.map((item) => (
+                            {inventorySheet?.inventory_items.filter(item => item.item.active).map((item) => (
+
                                 <div id="i-s-item" key={item.id}>
                                     <label htmlFor={`quantity-${item.id}`}>{item.item.name}</label>
                                     <input
