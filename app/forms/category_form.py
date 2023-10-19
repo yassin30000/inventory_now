@@ -4,13 +4,7 @@ from wtforms.validators import DataRequired, Length, NumberRange, ValidationErro
 from app.models.category import Category
 
 
-def category_exists(form, field):
-    name = field.data
-    category = Category.query.filter(Category.name == name).first()
-    if category:
-        raise ValidationError("Already have a category with this name")
-
 
 class CategoryForm(FlaskForm):
     name = StringField('Name', validators=[
-                       DataRequired(), Length(max=255), category_exists])
+                       DataRequired(), Length(max=255)])
