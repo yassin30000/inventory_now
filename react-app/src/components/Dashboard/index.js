@@ -15,7 +15,7 @@ function Dashboard() {
     const sessionUser = useSelector((state) => state.session.user);
     const userItems = useSelector(state => state.items.userItems);
     const allSheetsData = useSelector(state => state.inventorySheets.inventorySheets);
-    const allSheets = allSheetsData ? allSheetsData.inventory_sheets : []; 
+    const allSheets = allSheetsData ? allSheetsData.inventory_sheets : [];
     const location = useLocation();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -44,15 +44,28 @@ function Dashboard() {
 
                     </div>
                     <div className="i-s-bottom-container">
-                        {allSheets && allSheets.slice(0,4).map((sheet, i) => (
+                        {allSheets && allSheets.slice(allSheets.length - 4).reverse().map((sheet, i) => (
 
                             <div className={"inventory-sheet-" + i}>
 
 
-                                {formatDate(sheet.created_at)}
+                                <div className="dashboard-card-date">
+                                    {formatDate(sheet.created_at)}
+
+                                </div>
+
+                                <div className="dashboard-card-items">
+
+                                    {sheet.inventory_items.filter(item => item.item.active).map((item, index) => (
+                                        <div className="inventory-r" key={item.id}>
+                                            <li className="inventory-i-name">{item.item.name}</li>
+                                            <span className="inventory-i-quantity">{`x${item.quantity} ${item.item.suffix}`}</span>
+                                        </div>
+                                    ))}
+                                </div>
 
                                 <div className="inventory-btns-container">
-                                    
+
                                     <OpenModalButton
                                         className={'edit-inventory-dashboard-btn'}
                                         modalComponent={<InventorySheetForm sheetId={sheet.id} />}

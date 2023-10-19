@@ -77,7 +77,7 @@ function LeftNavigation() {
                     <OpenModalButton
                         buttonText='new'
                         onButtonClick={handleNewSheet}
-                        modalComponent={<InventorySheetForm sheetId={newSheetId} />}
+                        modalComponent={<NewInventorySheet sheetId={newSheetId} />}
                         buttonHTML={<span class="material-symbols-outlined">add</span>}
                     />
 

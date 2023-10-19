@@ -105,15 +105,27 @@ function ItemsPage() {
                     Suppliers
                 </button>
             </div>
+            
             <div className="tab-content">
 
                 {activeTab === 'categories' && <CategoriesTab />}
+                {activeTab === 'categories' && userCategories && userCategories.length === 0 && (
+                    <NoItems missing={'categories'} element={'category'} />
+                )}
+
                 {activeTab === 'suppliers' && <SuppliersTab />}
+                {activeTab === 'suppliers' && userSuppliers && userSuppliers.length === 0 && (
+                    <NoItems missing={'suppliers'} element={'supplier'} />
+                )}
+
+                
+
                 {activeTab === 'items' && (
 
                     <div className="items-content">
+                        
                         <table className="items-table" cellpadding="0" cellspacing="0" border="0">
-
+                            
 
                             <thead id='items-heading-row'>
 
@@ -134,10 +146,10 @@ function ItemsPage() {
                                 </tr>
                             </thead>
                         </table>
-                        <div className="table-content">
-                            {activeItems && activeItems.length === 0 && (
+                        <div className={activeItems.length === 0 ? 'table-content.no-items' : "table-content"}>
+                            {activeTab === 'items' && activeItems && activeItems.length === 0 && (
                                 <NoItems missing={'items'} element={'item'} />
-                            )}
+                            )}  
                             <table cellpadding="0" cellspacing="0" border="0">
                                 <tbody>
                                     {itemsWithSupplierAndCategoryNames.map((item, index) => (
@@ -188,7 +200,9 @@ function ItemsPage() {
 
                     </div>
                 )}
+
             </div>
+
         </div >
     );
 }

@@ -198,12 +198,14 @@ table {
 
 }
 
-.item-edit-dropdown > button {
-	/* font-weight: 500; */
-}
+
 
 #edit-dd-active,
 #item-dots > span:hover {
 	background-color: #bb86fc;
 	cursor: pointer;
+}
+
+.table-content.no-items {
+	overflow: hidden;
 }
