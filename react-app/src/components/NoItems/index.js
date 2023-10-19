@@ -5,6 +5,9 @@ import { createInventorySheet, fetchAllInventorySheets, fetchInventorySheet } fr
 import { useEffect, useState } from 'react';
 import OpenModalButton from '../OpenModalButton';
 import InventorySheetForm from '../InventorySheetForm';
+import NewItemModal from '../NewItemModal';
+import NewCategoryModal from '../NewCategoryModal';
+import NewSupplierModal from '../NewSupplierModal';
 
 
 function NoItems({ missing, element }) {
@@ -34,22 +37,34 @@ function NoItems({ missing, element }) {
                     {/* <button>create {missing}</button> */}
 
                     {element === 'item' && (
-                        <></>
+                        <OpenModalButton
+                            buttonText={`create ${missing.slice(0, missing.length - 1)}`}
+                            // onButtonClick={handleNewSheet}
+                            modalComponent={<NewItemModal />}
+                        />
                     )}
                     {element === 'inventorySheet' && (
                         <OpenModalButton
-                            buttonText={`create ${missing}`}
+                            buttonText={`create ${missing.slice(0, missing.length - 1)}`}
                             onButtonClick={handleNewSheet}
                             modalComponent={<InventorySheetForm sheetId={newSheetId} />}
                         />
                     )}
 
                     {element === 'category' && (
-                        <></>
+                        <OpenModalButton
+                            buttonText={`create category`}
+
+                            modalComponent={<NewCategoryModal />}
+                        />
                     )}
 
                     {element === 'supplier' && (
-                        <></>
+                        <OpenModalButton
+                            buttonText={`create ${missing.slice(0, missing.length - 1)}`}
+
+                            modalComponent={<NewSupplierModal />}
+                        />
                     )}
 
                 </div>

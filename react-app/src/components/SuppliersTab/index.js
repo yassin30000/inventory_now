@@ -7,6 +7,7 @@ import NewSupplierModal from '../NewSupplierModal';
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteSupplier from '../ConfirmDeleteSupplier';
 import UpdateSupplierForm from '../UpdateSupplierForm';
+import NoItems from '../NoItems';
 
 
 function SuppliersTab() {
@@ -52,6 +53,7 @@ function SuppliersTab() {
 
     return (
         <div className="items-content">
+            
             <table className="items-table">
                 <thead id='items-heading-row'>
                     <tr>
@@ -70,6 +72,7 @@ function SuppliersTab() {
                         </div></th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     {userSuppliers.map((supplier, index) => (
                         <tr key={supplier.id} className={index === userSuppliers.length - 1 ? 'last-row' : ''}>
