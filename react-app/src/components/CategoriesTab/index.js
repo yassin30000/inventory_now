@@ -71,7 +71,7 @@ function CategoriesTab() {
                     </tr>
                 </thead>
                 <tbody>
-                    {userCategories.reverse().map((category, index) => (
+                    {userCategories.map((category, index) => (
                         <tr key={category.id} className={index === userCategories.length - 1 ? 'last-row' : ''}>
                             <td id='item-name'>{category.name}</td>
                             <td id='item-category'>{category.items.filter(item => item.active).length}</td>
@@ -110,7 +110,7 @@ function CategoriesTab() {
                                 )}
                             </td>
                         </tr>
-                    ))}
+                    )).reverse()}
                 </tbody>
             </table>
         </div>

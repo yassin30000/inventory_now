@@ -20,14 +20,13 @@ function ItemsPage() {
 
     const userItems = useSelector((state) => state.items.userItems);
     const userSuppliers = useSelector((state) => state.suppliers.suppliers);
-    const userCategories = useSelector((state) => state.categories.categories); // Get user categories
-    console.log('categories', userCategories)
+    const userCategories = useSelector((state) => state.categories.categories);
+
 
     const dropdownRef = useRef(null);
 
     const activeItems = userItems.filter(item => item.active)
 
-    console.log('user items', activeItems)
 
     const supplierDictionary = {};
     userSuppliers.forEach((supplier) => {
@@ -153,7 +152,7 @@ function ItemsPage() {
                             <table cellpadding="0" cellspacing="0" border="0">
                                 <tbody>
                                     {itemsWithSupplierAndCategoryNames.map((item, index) => (
-                                        <>{console.log(item)}
+                                        <>
                                             {item.active && (
 
                                                 <tr key={item.id} className={index === itemsWithSupplierAndCategoryNames.length - 1 ? 'last-row' : ''}>
@@ -192,7 +191,7 @@ function ItemsPage() {
                                             )}
 
                                         </>
-                                    ))}
+                                    )).reverse()}
 
                                 </tbody>
                             </table>

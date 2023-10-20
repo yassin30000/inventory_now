@@ -104,7 +104,7 @@ const categoryReducer = (state = initialState, action) => {
 
         case DELETE_USER_CATEGORY:
             // return { ...state, categories: action.payload };
-            console.log(state.categories)
+
             const updatedCategories = state.categories.filter(
                 (category) => category.id !== action.payload
             );

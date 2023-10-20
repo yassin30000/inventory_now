@@ -5,7 +5,7 @@ import { deleteUserSupplierById, fetchUserSuppliers } from "../../store/supplier
 function ConfirmDeleteSupplier({ supplierId, supplierName }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    { console.log('SUPPLIER', supplierId) }
+
 
     const handleDelete = async (supplierId) => {
 

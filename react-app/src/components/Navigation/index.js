@@ -67,7 +67,7 @@ function Navigation({ isLoaded }) {
 				</div>
 
 				<div className="top-nav-right">
-					<span class="material-symbols-outlined">notifications</span>
+					{/* <span class="material-symbols-outlined">notifications</span> */}
 
 					{sessionUser && (
 						<>

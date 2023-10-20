@@ -34,7 +34,7 @@ function UpdateItemForm({ itemId }) {
             low_stock_at: lowStock,
             suffix: suffix,
         };
-        console.log(itemId, updatedItem)
+
 
         await dispatch(updateUserItemById(itemId, updatedItem)); // You need to implement the action to update the item
 
@@ -76,7 +76,7 @@ function UpdateItemForm({ itemId }) {
 
                                 onChange={(e) => setCategoryId(e.target.value)}
                             >
-                                {console.log('CATGEOTRY ID', categoryId)}
+
                                 <option value="" disabled>
                                     {categories.length ? 'Select Category' : 'No Categories'}
                                 </option>
@@ -94,7 +94,7 @@ function UpdateItemForm({ itemId }) {
 
                                 onChange={(e) => setSupplierId(e.target.value)}
                             >
-                                {console.log('SUPPLIER ID', supplierId)}
+
                                 <option value="" disabled>
                                     {suppliers.length ? 'Select Supplier' : 'No Suppliers'}
                                 </option>
