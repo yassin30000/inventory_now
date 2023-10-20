@@ -81,25 +81,14 @@ function Dashboard() {
 
                         ))}
                     </div>
-                    {/* <div className="i-s-bottom-container">
 
-                        <div className="inventory-sheet-1">
-                            Thursday, Sep 4
-                        </div>
-                        <div className="inventory-sheet-2">
-                            Saturday, Sep 6
-
-                        </div>
-                        <div className="inventory-sheet-3">
-                            Friday, Sep 12
-
-                        </div>
-
-                    </div> */}
                 </div>
                 <div className="row">
-                    <div className="column grocery-list">Grocery List</div>
-                    <div className="column idk-yet">Column 3</div>
+                    <div className="column grocery-list">
+                        
+                    </div>
+
+                    <div className="column idk-yet"></div>
                     <div className="column total-items">
 
                         <div id="total-items">
