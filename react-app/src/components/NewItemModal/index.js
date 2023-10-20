@@ -19,13 +19,13 @@ function NewItemModal() {
     const categories = useSelector((state) => state.categories.categories);
     const suppliers = useSelector((state) => state.suppliers.suppliers);
 
-    console.log('SUPPLIERS',categories)
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         let unCategory = categories.find(cat => cat.name === 'Uncategorized');
         let noSupplier = suppliers.find(sup => sup.name === 'No Supplier')
-        console.log('UNCATEGORY',unCategory)
+
         if (!unCategory) unCategory = await dispatch(createNewCategory({ name: 'Uncategorized' }))
         if (!noSupplier) noSupplier = await dispatch(createNewSupplier({ name: 'No Supplier' }))
 

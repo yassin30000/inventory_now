@@ -1,7 +1,81 @@
-
 .sheet-details-container {
 	margin: 0 80px 0 200px;
-	height: 100%;
-	width: 100%;
-    color: white;
+	color: white;
+	/* background-color: red; */
 }
+
+.sheet-details-heading-container {
+	/* background-color: red; */
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+	margin: 20px 0 20px 0;
+}
+
+.sheet-details-heading {
+	font-size: 50px;
+	font-weight: 500;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.sheet-details-content-container {
+	/* background-color: red; */
+	display: grid;
+	grid-template-columns: 200px 200px 200px 200px 200px;
+	justify-content: center;
+	gap: 20px;
+	overflow: auto;
+	max-height: 65vh;
+}
+
+.details-item-card-low {
+	background-color: #ff0032;
+	/* background-color: white; */
+	color: white;
+	/* width: 300px; */
+	height: 200px;
+	border-radius: 20px;
+	padding: 20px;
+	/* border: 1px solid white; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.details-item-card {
+	background-color: #bb86fc;
+	/* background-color: white; */
+	color: white;
+	/* width: 300px; */
+	height: 200px;
+	border-radius: 20px;
+	padding: 20px;
+	/* border: 1px solid white; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+#details-item-quantiy {
+	font-weight: 500;
+	font-size: 60px;
+	margin-bottom: 10px;
+}
+
+#details-item-name {
+	font-size: 20px;
+}
+
+#details-item-suffix {
+	font-size: 15px;
+	font-weight: 300;
+}
+
+

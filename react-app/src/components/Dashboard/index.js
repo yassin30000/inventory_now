@@ -9,13 +9,21 @@ import { fetchUserCategories } from '../../store/category';
 import { fetchUserSuppliers } from '../../store/supplier';
 import { fetchAllInventorySheets } from '../../store/inventory_sheet';
 import InventorySheetForm from '../InventorySheetForm';
+import NewCategoryModal from '../NewCategoryModal';
+import NewSupplierModal from '../NewSupplierModal';
 
 
 function Dashboard() {
     const sessionUser = useSelector((state) => state.session.user);
-    const userItems = useSelector(state => state.items.userItems);
+
+    const allItems = useSelector(state => state.items.userItems);
+    const userItems = allItems.filter(item => item.active)
+
     const allSheetsData = useSelector(state => state.inventorySheets.inventorySheets);
     const allSheets = allSheetsData ? allSheetsData.inventory_sheets : [];
+    const userSuppliers = useSelector((state) => state.suppliers.suppliers);
+    const userCategories = useSelector((state) => state.categories.categories);
+
     const location = useLocation();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -84,11 +92,10 @@ function Dashboard() {
 
                 </div>
                 <div className="row">
-                    <div className="column grocery-list">
-                        
-                    </div>
+                    {/* <div className="column grocery-list"></div> */}
 
-                    <div className="column idk-yet"></div>
+                    {/* <div className="column idk-yet"></div> */}
+
                     <div className="column total-items">
 
                         <div id="total-items">
@@ -101,6 +108,43 @@ function Dashboard() {
                                 <OpenModalButton
                                     buttonHTML={<span class="material-symbols-outlined new-item-dash">add</span>}
                                     modalComponent={<NewItemModal />}
+                                />
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div className="column total-items" id='columnTotalCat'>
+
+                        <div id="total-items">
+                            <div id="total-items-number">{userCategories.length}</div>
+                            <div id="total-items-label">categories</div>
+                        </div>
+
+                        <div className="new-item-dash-btn-container">
+                            <div className="new-item-dash-btn" id='newItemDashBtnCat'>
+                                <OpenModalButton
+                                    buttonHTML={<span class="material-symbols-outlined new-item-dash">add</span>}
+                                    modalComponent={<NewCategoryModal />}
+                                />
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="column total-items" id='columnTotalSup'>
+
+                        <div id="total-items">
+                            <div id="total-items-number">{userSuppliers.length}</div>
+                            <div id="total-items-label">suppliers</div>
+                        </div>
+
+                        <div className="new-item-dash-btn-container">
+                            <div className="new-item-dash-btn" id='newItemDashBtnSup'>
+                                <OpenModalButton
+                                    buttonHTML={<span class="material-symbols-outlined new-item-dash">add</span>}
+                                    modalComponent={<NewSupplierModal />}
                                 />
 
                             </div>

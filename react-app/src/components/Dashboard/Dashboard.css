@@ -181,20 +181,9 @@
 .column {
 	flex: 1; /* Each column takes an equal amount of space */
 	background-color: #232323; /* Add background color */
-	color: white;
+	/* color: white; */
 	/* padding: 20px; */
 	border-radius: 20px;
-}
-
-.column.total-items {
-	display: grid;
-	grid-template-columns: 50% 50%;
-	align-items: center;
-	justify-content: center;
-
-	/* background-color: #12f9a6; */
-
-	background-color: #bb86fc;
 }
 
 #total-items {
@@ -212,7 +201,7 @@
 	text-align: center;
 	justify-content: center;
 	/* color: #0f0f0f; */
-	color: white;
+	/* color: white; */
 	border-radius: 20px;
 }
 
@@ -238,31 +227,6 @@
 	transition: all 0.3s;
 }
 
-.new-item-dash-btn button {
-	/* background-color: rgb(15, 15, 15); */
-	background-color: white;
-	height: 80px;
-	width: 80px;
-	border: none;
-	border-radius: 50%;
-	/* color: #12f9a6; */
-	color: #bb86fc;
-	transition: all 0.3s;
-}
-
-.new-item-dash-btn button span {
-	border-radius: 50%;
-}
-
-.new-item-dash-btn button:hover {
-	cursor: pointer;
-	background-color: #ee4077;
-	background-color: black;
-	/* background-color: #744eb4; */
-	color: white;
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
 .new-item-dash-btn-container {
 	height: 100%;
 	border-radius: 20px;
@@ -282,16 +246,16 @@
 	font-size: 20px;
 }
 
-
-
 .dashboard-card-date {
 	margin-bottom: 20px;
 	text-align: center;
+	font-weight: 500;
 }
 
 .inventory-r {
 	font-size: 15px;
 	display: flex;
+	font-weight: 300;
 	justify-content: space-between;
 }
 
@@ -300,11 +264,11 @@
 	flex-direction: column;
 	gap: 10px;
 	overflow: auto;
-
+	scroll-behavior: smooth;
 }
 
 .dashboard-card-items::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 .column.grocery-list {
@@ -312,7 +276,7 @@
 	justify-content: space-evenly;
 }
 
-.left-grocery-list{
+.left-grocery-list {
 	/* background-color: red; */
 	/* width: 100%; */
 	font-size: 35px;
@@ -320,4 +284,73 @@
 	text-align: center;
 }
 
+/* #columnTotalCat {
 
+	background-color: #F8F8F8;
+	color: black;
+} */
+
+#columnTotalCat,
+#columnTotalSup {
+	/* background-color: #232323;
+	color: white; */
+	background-color: rgb(35,35,35);
+	color: white;
+}
+
+#newItemDashBtnCat button,
+#newItemDashBtnSup button {
+	/* color: #232323; */
+	background-color: #bb86fc;
+	color: white;
+}
+
+/* #newItemDashBtnCat button{
+	background-color: black;
+	color: white;
+} */
+
+#newItemDashBtnSup button:hover,
+#newItemDashBtnCat button:hover {
+	background-color: white;
+	color: black;
+}
+
+.column.total-items {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	align-items: center;
+	justify-content: center;
+
+	/* background-color: #12f9a6; */
+	color: white;
+
+	background-color: #bb86fc;
+	/* background-color: #3BEBE6; */
+}
+
+.new-item-dash-btn button {
+	/* background-color: rgb(15, 15, 15); */
+	/* background-color: white; */
+	height: 80px;
+	width: 80px;
+	border: none;
+	border-radius: 50%;
+	/* color: #12f9a6; */
+	color: #bb86fc;
+
+	transition: all 0.3s;
+}
+
+.new-item-dash-btn button span {
+	border-radius: 50%;
+}
+
+.new-item-dash-btn button:hover {
+	cursor: pointer;
+
+	background-color: black;
+	/* background-color: #744eb4; */
+	color: white;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

@@ -8,7 +8,7 @@ function ConfirmDeleteItem({ itemId }) {
     const items = useSelector(state => state.items.userItems);
     const item = items.find(item => item.id === itemId)
 
-    console.log(item)
+
 
     const { closeModal } = useModal();
     const dispatch = useDispatch();

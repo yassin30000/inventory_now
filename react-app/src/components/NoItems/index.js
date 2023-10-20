@@ -17,7 +17,7 @@ function NoItems({ missing, element }) {
     const handleNewSheet = async () => {
         const newSheet = await dispatch(createInventorySheet());
         setNewSheetId(newSheet.inventory_sheet_id);
-        console.log('NEW SHEET ID', newSheetId)
+
         await dispatch(fetchInventorySheet(newSheetId))
 
     }

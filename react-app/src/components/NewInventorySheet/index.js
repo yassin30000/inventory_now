@@ -16,7 +16,7 @@ function NewInventorySheet({ sheetId }) {
 
     const oneSheet = allSheets ? allSheets[allSheets.length - 1] : []
 
-    console.log('ONE SHEET', oneSheet)
+
 
     useEffect(() => {
         dispatch(fetchInventorySheet(sheetId));

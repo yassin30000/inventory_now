@@ -41,7 +41,7 @@ export const updateUserItemById = (itemId, updatedData) => async (dispatch) => {
     } else {
         // Handle error cases
         const data = await response.json();
-        console.log(data)
+
 
         return data.errors;
     }
@@ -65,7 +65,7 @@ export const createNewItem = (formData) => async (dispatch) => {
         body: JSON.stringify(formData),
     });
 
-    console.log('ITEM FROM STORE: ', response)
+
 
     if (response.ok) {
         const newItem = await response.json();

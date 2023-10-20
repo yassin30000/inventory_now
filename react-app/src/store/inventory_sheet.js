@@ -72,7 +72,7 @@ export const createInventorySheet = () => async (dispatch) => {
     if (response.ok) {
         const newInventorySheet = await response.json();
         dispatch(createInventorySheetAction(newInventorySheet));
-        console.log('ivnentory sheet from store: ', newInventorySheet)
+
         return newInventorySheet;
     } else {
         // Handle error cases
