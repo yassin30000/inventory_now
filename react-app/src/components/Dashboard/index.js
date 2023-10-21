@@ -52,7 +52,8 @@ function Dashboard() {
 
                     </div>
                     <div className="i-s-bottom-container">
-                        {allSheets && allSheets.slice(allSheets.length - 4).reverse().map((sheet, i) => (
+
+                        {allSheets && allSheets.slice(-4).reverse().map((sheet, i) => (
 
                             <div className={"inventory-sheet-" + i}>
 
