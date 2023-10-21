@@ -7,10 +7,13 @@ import InventorySheetForm from '../InventorySheetForm'
 import ConfirmDeleteSheet from '../ConfirmDeleteSheet';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import NoItems from '../NoItems';
+import { fetchUserItems } from '../../store/item';
+
+
 
 function InventoryPage() {
-    const history = useHistory();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const allSheetsData = useSelector(state => state.inventorySheets.inventorySheets);
     const allSheets = allSheetsData ? allSheetsData.inventory_sheets : [];
@@ -51,15 +54,18 @@ function InventoryPage() {
     };
 
     useEffect(() => {
+        dispatch(fetchUserItems());
         dispatch(fetchAllInventorySheets());
     }, [dispatch]);
 
     return (
         <>
             <div className="inventory-page-container">
+
                 {allSheets && allSheets.length === 0 && (
                     <NoItems missing={'inventory sheets'} element={'inventorySheet'} />
                 )}
+
                 <div className="inventories">
                     {allSheets && allSheets.map((sheet) => (
                         <div className="inventory" key={sheet.id}>

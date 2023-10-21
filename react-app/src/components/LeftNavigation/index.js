@@ -8,27 +8,33 @@ import curveLogo from '../../images/actual_curve.png'
 import purpleLogo from '../../images/i-n-logo-purple.png'
 import NewInventorySheet from '../NewInventorySheet';
 import { createInventorySheet, fetchAllInventorySheets, fetchInventorySheet } from '../../store/inventory_sheet';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { fetchUserItems } from '../../store/item';
+import NoItemsNoSheetModal from '../NoItemsNoSheetModal';
 
 
 function LeftNavigation() {
-    const location = useLocation();
     const dispatch = useDispatch();
+    const location = useLocation();
+    const history = useHistory();
+
+    const userItems = useSelector((state) => state.items.userItems);
+    const activeItems = userItems.filter(item => item.active)
+
     const [newSheetId, setNewSheetId] = useState();
-    const history = useHistory()
 
     const handleNewSheet = async () => {
         const newSheet = await dispatch(createInventorySheet());
         setNewSheetId(newSheet.inventory_sheet_id);
 
         await dispatch(fetchInventorySheet(newSheetId))
-
     }
 
 
     useEffect(() => {
+        dispatch(fetchUserItems())
         dispatch(fetchInventorySheet(newSheetId))
         dispatch(fetchAllInventorySheets())
     }, [dispatch, newSheetId])
@@ -59,27 +65,27 @@ function LeftNavigation() {
                         Items
                     </NavLink>
 
-                    {/* <NavLink to='/suppliers'>
-                        <span class="material-symbols-outlined">forklift</span>
-                        Suppliers
-                    </NavLink> */}
-
                     <NavLink to='/inventory-sheets'>
                         <span class="material-symbols-outlined">inventory</span>
                         Inventory
                     </NavLink>
 
-                    {/* <button onClick={handleNewSheet}>
-                        <span class="material-symbols-outlined">add</span>
-                        new
-                    </button> */}
+                    {activeItems.length === 0 ? (
+                        <OpenModalButton
+                            buttonText='new'
+                            // onButtonClick={handleNewSheet}
+                            modalComponent={<NoItemsNoSheetModal />}
+                            buttonHTML={<span class="material-symbols-outlined">add</span>}
+                        />
+                    ) : (
+                        <OpenModalButton
+                            buttonText='new'
+                            onButtonClick={handleNewSheet}
+                            modalComponent={<NewInventorySheet sheetId={newSheetId} />}
+                            buttonHTML={<span class="material-symbols-outlined">add</span>}
+                        />
+                    )}
 
-                    <OpenModalButton
-                        buttonText='new'
-                        onButtonClick={handleNewSheet}
-                        modalComponent={<NewInventorySheet sheetId={newSheetId} />}
-                        buttonHTML={<span class="material-symbols-outlined">add</span>}
-                    />
 
                 </div>
             </div>

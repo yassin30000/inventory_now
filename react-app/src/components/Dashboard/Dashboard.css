@@ -302,7 +302,8 @@
 #newItemDashBtnSup button {
 	/* color: #232323; */
 	background-color: #bb86fc;
-	color: white;
+	border: 2px solid #bb86fc;
+	color: #232323;
 }
 
 /* #newItemDashBtnCat button{
@@ -312,8 +313,8 @@
 
 #newItemDashBtnSup button:hover,
 #newItemDashBtnCat button:hover {
-	background-color: white;
-	color: black;
+	background-color: #232323;
+	color: #BB86FC;
 }
 
 .column.total-items {
@@ -334,7 +335,7 @@
 	/* background-color: white; */
 	height: 80px;
 	width: 80px;
-	border: none;
+	border: 2px solid white;
 	border-radius: 50%;
 	/* color: #12f9a6; */
 	color: #bb86fc;
@@ -349,7 +350,7 @@
 .new-item-dash-btn button:hover {
 	cursor: pointer;
 
-	background-color: black;
+	background-color: #bb86fc;
 	/* background-color: #744eb4; */
 	color: white;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
