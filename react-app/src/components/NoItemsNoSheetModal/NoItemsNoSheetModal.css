@@ -1,0 +1,41 @@
+.no-items-no-sheet-container {
+	text-align: center;
+	color: #ff0032;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.no-items-no-sheet-container h1 {
+    font-size: 40px;
+}
+
+.no-items-no-sheet-container p {
+    font-size: 15px;
+}
+
+
+#goToItemsBtn {
+	background-color: #ff0032;
+	color: white;
+	border: 1px solid #ff0032;
+	border-radius: 20px;
+	width: 150px;
+	font-size: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+	margin-top: 20px;
+	height: 40px;
+
+    transition: all .3s;
+}
+
+#goToItemsBtn:hover {
+
+    cursor: pointer;
+    background-color: #242424;
+    color: #ff0032;
+}

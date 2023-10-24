@@ -52,7 +52,8 @@ function Dashboard() {
 
                     </div>
                     <div className="i-s-bottom-container">
-                        {allSheets && allSheets.slice(allSheets.length - 4).reverse().map((sheet, i) => (
+
+                        {allSheets && allSheets.slice(-4).reverse().map((sheet, i) => (
 
                             <div className={"inventory-sheet-" + i}>
 
@@ -100,7 +101,7 @@ function Dashboard() {
 
                         <div id="total-items">
                             <div id="total-items-number">{userItems.length}</div>
-                            <div id="total-items-label">items</div>
+                            <div id="total-items-label">{userItems.length === 1 ? 'item' : 'items'}</div>
                         </div>
 
                         <div className="new-item-dash-btn-container">
@@ -119,7 +120,7 @@ function Dashboard() {
 
                         <div id="total-items">
                             <div id="total-items-number">{userCategories.length}</div>
-                            <div id="total-items-label">categories</div>
+                            <div id="total-items-label">{userCategories.length === 1 ? 'category' : 'categories'}</div>
                         </div>
 
                         <div className="new-item-dash-btn-container">
@@ -137,7 +138,7 @@ function Dashboard() {
 
                         <div id="total-items">
                             <div id="total-items-number">{userSuppliers.length}</div>
-                            <div id="total-items-label">suppliers</div>
+                            <div id="total-items-label">{userSuppliers.length === 1 ? 'supplier' : 'suppliers'}</div>
                         </div>
 
                         <div className="new-item-dash-btn-container">

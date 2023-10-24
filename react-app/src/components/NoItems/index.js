@@ -1,6 +1,5 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './NoItems.css'
-
 import { createInventorySheet, fetchAllInventorySheets, fetchInventorySheet } from '../../store/inventory_sheet';
 import { useEffect, useState } from 'react';
 import OpenModalButton from '../OpenModalButton';
@@ -8,11 +7,18 @@ import InventorySheetForm from '../InventorySheetForm';
 import NewItemModal from '../NewItemModal';
 import NewCategoryModal from '../NewCategoryModal';
 import NewSupplierModal from '../NewSupplierModal';
+import NoItemsNoSheetModal from '../NoItemsNoSheetModal';
+import { fetchUserItems } from '../../store/item';
+import NewInventorySheet from '../NewInventorySheet';
+import NewSheetMessage from '../NewSheetMessage';
 
 
 function NoItems({ missing, element }) {
     const dispatch = useDispatch();
     const [newSheetId, setNewSheetId] = useState();
+    const userItems = useSelector((state) => state.items.userItems);
+    const activeItems = userItems.filter(item => item.active)
+
 
     const handleNewSheet = async () => {
         const newSheet = await dispatch(createInventorySheet());
@@ -22,6 +28,7 @@ function NoItems({ missing, element }) {
 
     }
     useEffect(() => {
+        dispatch(fetchUserItems())
         dispatch(fetchInventorySheet(newSheetId))
         dispatch(fetchAllInventorySheets())
     }, [dispatch, newSheetId])
@@ -44,11 +51,25 @@ function NoItems({ missing, element }) {
                         />
                     )}
                     {element === 'inventorySheet' && (
-                        <OpenModalButton
-                            buttonText={`create ${missing.slice(0, missing.length - 1)}`}
-                            onButtonClick={handleNewSheet}
-                            modalComponent={<InventorySheetForm sheetId={newSheetId} />}
-                        />
+                        <>
+                            {activeItems.length === 0 ? (
+                                <OpenModalButton
+                                    buttonText={`create ${missing.slice(0, missing.length - 1)}`}
+                                    // onButtonClick={handleNewSheet}
+                                    modalComponent={<NoItemsNoSheetModal />}
+                                />
+                            ) : (
+                                <>
+                                    <OpenModalButton
+                                        buttonText={`create ${missing.slice(0, missing.length - 1)}`}
+
+                                        onButtonClick={handleNewSheet}
+                                        modalComponent={<NewSheetMessage />}
+
+                                    />
+                                </>
+                            )}
+                        </>
                     )}
 
                     {element === 'category' && (
