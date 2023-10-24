@@ -303,7 +303,7 @@
 #newItemDashBtnSup button {
 	/* color: #232323; */
 	background-color: #bb86fc;
-	border: 2px solid #bb86fc;
+	border: 3px solid #bb86fc;
 	color: #232323;
 }
 
@@ -336,7 +336,7 @@
 	/* background-color: white; */
 	height: 80px;
 	width: 80px;
-	border: 2px solid white;
+	border: 3px solid white;
 	border-radius: 50%;
 	/* color: #12f9a6; */
 	color: #bb86fc;

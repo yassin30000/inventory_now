@@ -5,6 +5,7 @@ import { createNewItem } from '../../store/item';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewCategory } from '../../store/category';
 import { createNewSupplier } from '../../store/supplier';
+import { useHistory } from "react-router-dom";
 
 
 function NewItemModal() {
@@ -14,6 +15,7 @@ function NewItemModal() {
     const [lowStock, setLowStock] = useState('');
     const [suffix, setSuffix] = useState('');
 
+    const history = useHistory();
     const { closeModal } = useModal();
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.categories.categories);
@@ -38,6 +40,7 @@ function NewItemModal() {
         };
 
         await dispatch(createNewItem(newItem));
+        history.push('/items')
         closeModal();
     };
 

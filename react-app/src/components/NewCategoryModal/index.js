@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import './NewCategoryModal.css'
 import { useModal } from '../../context/Modal';
 import { createNewCategory } from '../../store/category';
+import { useHistory } from "react-router-dom";
+
 
 function NewCategoryModal() {
     const [name, setName] = useState('');
+    const history = useHistory();
 
     const { closeModal } = useModal();
     const dispatch = useDispatch();
@@ -18,6 +21,7 @@ function NewCategoryModal() {
         };
 
         await dispatch(createNewCategory(newCategory));
+        history.push('/items')
 
         closeModal();
     };

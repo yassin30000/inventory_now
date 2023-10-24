@@ -3,9 +3,12 @@ import { useModal } from '../../context/Modal';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewSupplier } from '../../store/supplier';
+import { useHistory } from "react-router-dom";
+
 
 function NewSupplierModal() {
     const [name, setName] = useState('');
+    const history = useHistory();
 
     const { closeModal } = useModal();
     const dispatch = useDispatch();
@@ -18,6 +21,7 @@ function NewSupplierModal() {
         };
 
         await dispatch(createNewSupplier(newSupplier));
+        history.push('/items')
 
         closeModal();
     };

@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { deleteInventorySheet, fetchAllInventorySheets } from "../../store/inventory_sheet";
 import { useEffect } from "react";
 import { useModal } from "../../context/Modal";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 
 function ConfirmDeleteSheet({ sheetId }) {
