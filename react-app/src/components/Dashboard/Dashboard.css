@@ -265,6 +265,7 @@
 	gap: 10px;
 	overflow: auto;
 	scroll-behavior: smooth;
+	height: 100%;
 }
 
 .dashboard-card-items::-webkit-scrollbar {

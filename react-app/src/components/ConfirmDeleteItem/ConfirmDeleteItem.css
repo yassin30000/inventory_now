@@ -50,7 +50,7 @@
 .delete-item-btns button {
 	height: 40px;
 	border-radius: 20px;
-	border: none;
+	/* border: none; */
 	color: white;
 	width: 50%;
 	margin-top: 20px;

@@ -10,6 +10,7 @@ import NewSupplierModal from '../NewSupplierModal';
 import NoItemsNoSheetModal from '../NoItemsNoSheetModal';
 import { fetchUserItems } from '../../store/item';
 import NewInventorySheet from '../NewInventorySheet';
+import NewSheetMessage from '../NewSheetMessage';
 
 
 function NoItems({ missing, element }) {
@@ -59,14 +60,13 @@ function NoItems({ missing, element }) {
                                 />
                             ) : (
                                 <>
-                                    {newSheetId && (
+                                    <OpenModalButton
+                                        buttonText={`create ${missing.slice(0, missing.length - 1)}`}
 
-                                        <OpenModalButton
-                                            buttonText={`create ${missing.slice(0, missing.length - 1)}`}
-                                            onButtonClick={handleNewSheet}
-                                            modalComponent={<NewInventorySheet sheetId={newSheetId} />}
-                                        />
-                                    )}
+                                        onButtonClick={handleNewSheet}
+                                        modalComponent={<NewSheetMessage />}
+
+                                    />
                                 </>
                             )}
                         </>

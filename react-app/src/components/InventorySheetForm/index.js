@@ -65,8 +65,11 @@ function InventorySheetForm({ sheetId }) {
                                         type="number"
                                         id={`quantity-${item.id}`}
                                         name={`quantity-${item.id}`}
-                                        value={quantityUpdates[item.id] || item.quantity}
+                                        // value={quantityUpdates[item.id] || item.quantity}
+                                        value={quantityUpdates[item.id]}
+                                        placeholder={item.quantity}
                                         onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                                        min={0}
                                     />
                                     <span>{item.item.suffix}</span>
                                 </div>

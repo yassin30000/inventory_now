@@ -118,12 +118,8 @@ body {
 }
 
 .inventory-low-stock-container {
-	/* background-color: #734EB4; */
-	/* background-color: #0f0f0f; */
-	/* background-color: #734eb4; */
-	background-color: #c38fff;
-	/* background-color: #EE4078; */
-	/* background-color: #F0434B; */
+	/* background-color: #c38fff; */
+	background-color: #ff0032;
 	color: white;
 	border-radius: 50%;
 	height: 100%;
@@ -158,8 +154,8 @@ body {
 
 .deleteIsButton {
 	/* border: 1px solid #F44336; */
-	border: 1px solid #DC143C;
-	color: #DC143C;
+	border: 1px solid #ff0032;
+	color: #ff0032;
 	background-color: #1e1e1e;
 	/* color: #F44336; */
 	border-radius: 10px;
@@ -182,12 +178,10 @@ body {
 	transition: 0.3s;
 }
 
-
-
 .deleteIsButton:hover {
 	transform: scale(1.1);
 	cursor: pointer;
-	background-color: #DC143C;
+	background-color: #ff0032;
 	color: white;
 }
 

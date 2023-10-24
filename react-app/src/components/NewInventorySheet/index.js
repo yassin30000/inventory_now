@@ -5,23 +5,18 @@ import './NewInventorySheet.css'
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function NewInventorySheet({ sheetId }) {
+function NewInventorySheet() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { closeModal } = useModal();
-    const inventorySheetData = useSelector((state) => state.inventorySheets);
-    const inventorySheet = inventorySheetData ? inventorySheetData.inventorySheet : [];
+
     const allSheetsData = useSelector(state => state.inventorySheets.inventorySheets);
     const allSheets = allSheetsData ? allSheetsData.inventory_sheets : [];
-
     const oneSheet = allSheets ? allSheets[allSheets.length - 1] : []
 
-
-
     useEffect(() => {
-        dispatch(fetchInventorySheet(sheetId));
         dispatch(fetchAllInventorySheets());
-    }, [dispatch, sheetId]);
+    }, [dispatch]);
 
     const [quantityUpdates, setQuantityUpdates] = useState({});
     const handleQuantityChange = (itemId, newQuantity) => {
@@ -42,17 +37,16 @@ function NewInventorySheet({ sheetId }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (inventorySheet) {
+        if (oneSheet) {
             for (const itemId in quantityUpdates) {
                 const newQuantity = quantityUpdates[itemId];
-                await dispatch(updateInventoryItem(itemId, inventorySheet.id, newQuantity));
+                await dispatch(updateInventoryItem(itemId, oneSheet.id, newQuantity));
             }
         }
         closeModal();
         await dispatch(fetchAllInventorySheets());
         history.push('/inventory-sheets')
     };
-
 
 
     return (
@@ -76,8 +70,11 @@ function NewInventorySheet({ sheetId }) {
                                             type="number"
                                             id={`quantity-${item.id}`}
                                             name={`quantity-${item.id}`}
-                                            value={quantityUpdates[item.id] || item.quantity}
+                                            // value={quantityUpdates[item.id] || item.quantity}
+                                            value={quantityUpdates[item.id] !== undefined ? quantityUpdates[item.id] : ''}
+                                            placeholder="0"
                                             onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                                            min={0}
                                         />
                                         <span>{item.item.suffix}</span>
                                     </div>

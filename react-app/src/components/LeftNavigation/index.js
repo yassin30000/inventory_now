@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { fetchUserItems } from '../../store/item';
 import NoItemsNoSheetModal from '../NoItemsNoSheetModal';
+import NewSheetMessage from '../NewSheetMessage';
 
 
 function LeftNavigation() {
@@ -78,10 +79,16 @@ function LeftNavigation() {
                             buttonHTML={<span class="material-symbols-outlined">add</span>}
                         />
                     ) : (
+                        // <OpenModalButton
+                        //     buttonText='new'
+                        //     onButtonClick={handleNewSheet}
+                        //     modalComponent={<NewInventorySheet sheetId={newSheetId} />}
+                        //     buttonHTML={<span class="material-symbols-outlined">add</span>}
+                        // />
                         <OpenModalButton
                             buttonText='new'
                             onButtonClick={handleNewSheet}
-                            modalComponent={<NewInventorySheet sheetId={newSheetId} />}
+                            modalComponent={<NewSheetMessage />}
                             buttonHTML={<span class="material-symbols-outlined">add</span>}
                         />
                     )}
