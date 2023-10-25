@@ -26,7 +26,7 @@
 	/* background-color: red; */
 	display: grid;
 	grid-template-columns: 200px 200px 200px 200px 200px;
-
+	width: max-content;
 	/* background-color: #bb86fc; */
 	border: 3px solid #ff0032;
 	padding: 35px;
@@ -39,6 +39,7 @@
 	/* background-color: red; */
 	display: grid;
 	grid-template-columns: 200px 200px 200px 200px 200px;
+	width: max-content;
 
 	/* background-color: #bb86fc; */
 	border: 3px solid #bb86fc;
