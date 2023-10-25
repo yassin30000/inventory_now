@@ -127,8 +127,7 @@
 	background-color: #bb86fc;
 	color: white;
 	font-size: 14px;
-	transition: all .3s
-	;
+	transition: all .3s;
 }
 
 .toggle-sort-container button:hover {
