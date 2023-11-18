@@ -2,6 +2,9 @@
 
 Welcome to Inventory Now, a web application built with Flask and React for efficient inventory tracking and management.
 
+# Live Link
+## https://inventory-now.onrender.com
+
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
