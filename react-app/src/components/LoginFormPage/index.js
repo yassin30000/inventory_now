@@ -131,6 +131,21 @@ function LoginFormPage() {
 								<NavLink to='/signup'>Create an Account</NavLink>
 							</div>
 
+							<div className="footer-container">
+									<div className="footer-heading">Meet the developer!</div>
+								<div className="footer-content">
+									<span>
+										<a href='https://github.com/yassin30000' target="_blank" className="footer-git">Github</a>
+									</span>
+									<span>
+										<a href='https://yassin30000.github.io/portfolio/' target="_blank" className="footer-portfolio">Portfolio</a>
+									</span>
+									<span>
+										<a href='https://www.linkedin.com/in/yassin-tantawy-2bb807189/' target="_blank" className="footer-linkedIn">LinkedIn</a>
+									</span>
+								</div>
+							</div>
+
 						</div>
 					</div>
 					<div className="login-right-container">
