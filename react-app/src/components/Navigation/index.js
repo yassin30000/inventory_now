@@ -33,7 +33,7 @@ function Navigation({ isLoaded }) {
 
 	}, [isDropdownOpen]);
 
-	if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/404") return null
+	if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/404" || location.pathname === '/get-started') return null
 
 	const toggleDropdown = () => {
 		setIsDropdownOpen((prevState) => !prevState);

@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import ItemsPage from "./components/ItemsPage";
 import InventoryPage from "./components/InventoryPage";
 import SheetDetailsPage from "./components/SheetDetailsPage";
+import GetStarted from "./components/GetStarted";
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
 					<Route path="/signup">
 						<SignupFormPage />
 					</Route>
-					
+
 					<Route exact path="/inventory-sheets">
 						<InventoryPage />
 					</Route>
@@ -48,6 +49,10 @@ function App() {
 					<Route path="/items">
 						<ItemsPage />
 					</Route>
+
+					{/* <Route path='/get-started'>
+						<GetStarted />
+					</Route> */}
 				</Switch>
 			)}
 		</>
