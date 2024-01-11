@@ -193,3 +193,38 @@
 	animation: rotate 40s linear infinite;
 	border-radius: 50%;
 }
+
+/*login page footer*/
+
+.footer-container {
+	margin-top: 20px;
+	border: 2px dashed black;
+	border-radius: 10px;
+	padding: 10px 20px 10px 20px;
+	width: 100%;
+	font-weight: 300;
+}
+
+.footer-content {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.footer-content a {
+	color: black;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+.footer-content a:hover {
+	transform: scale(1.5);
+	font-size: 18px;
+	color: #734EB4;
+}
+
+.footer-heading {
+	font-size: 20px;
+	font-weight: 500;
+	text-align: center;
+	margin-bottom: 10px;
+}
