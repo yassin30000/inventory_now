@@ -8,13 +8,8 @@ Welcome to Inventory Now, a web application built with Flask and React for effic
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
-- [Getting Started](#getting-started)
 - [Installation](#installation)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
 - [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
@@ -84,3 +79,19 @@ To get started with Inventory Now, follow the installation instructions below.
   ```bash
   npm start
   ```
+
+## Screenshots
+
+<img width="1440" alt="Screenshot 2024-07-27 at 2 41 04 PM" src="https://github.com/user-attachments/assets/2e9c358a-c029-4f6e-abe4-7149c08e4c22">
+
+<img width="1440" alt="Screenshot 2024-07-27 at 2 40 55 PM" src="https://github.com/user-attachments/assets/1a486136-69da-4264-96b8-30faa7082430">
+
+<img width="1440" alt="Screenshot 2024-07-27 at 2 40 48 PM" src="https://github.com/user-attachments/assets/2008c67a-662a-4bf2-a569-79baf5dba727">
+
+<img width="1439" alt="Screenshot 2024-07-27 at 2 40 41 PM" src="https://github.com/user-attachments/assets/05ff577b-a12e-4e3c-b904-5da9dcfc5c42">
+
+<img width="1440" alt="Screenshot 2024-07-27 at 2 40 36 PM" src="https://github.com/user-attachments/assets/840bc37e-6486-476e-a4ba-22a1fa10d66b">
+
+
+
+
